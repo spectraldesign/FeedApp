@@ -1,0 +1,42 @@
+.poll-search {
+    text-align: center;
+    display: block;
+    margin-top: 200px;
+}
+
+.poll-search-form {
+    width: 100%;
+}
+
+.submit-poll-btn {
+    background-color: #42B6F3;
+    color: white;
+    border: none;
+    /* padding: 20px; */
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+}
+
+.submit-poll-btn:hover {
+    background-color: #0b3148;
+}
+
+.poll-search-input{
+    height: 60px;
+    width: 60%;
+    display: block;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 30px;
+}
+
+.poll-search-input::placeholder {
+    color: #42B6F3;
+    text-align: center;
+    font-size: 30px;
+}
