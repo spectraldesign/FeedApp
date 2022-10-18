@@ -1,12 +1,12 @@
 import type { Component } from 'solid-js';
-import Homepage from './components/Pages/Homepage';
+import Homepage from './Pages/Homepage';
 import { Routes, Route } from '@solidjs/router';
-import MyPollsPage from './components/Pages/MyPollsPage';
-import LoginPage from './components/Pages/LoginPage';
-import RegisterPage from './components/Pages/RegisterPage';
-import ProfilePage from './components/Pages/ProfilePage';
-import VotePage from './components/Pages/VotePage';
-import CreatePollPage from './components/Pages/CreatePollPage';
+import MyPollsPage from './Pages/MyPollsPage';
+import LoginPage from './Pages/LoginPage';
+import RegisterPage from './Pages/RegisterPage';
+import ProfilePage from './Pages/ProfilePage';
+import VotePage from './Pages/VotePage';
+import CreatePollPage from './Pages/CreatePollPage';
 
 const App: Component = () => {
   return (

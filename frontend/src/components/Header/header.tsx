@@ -4,6 +4,7 @@ import { createSignal, createEffect, createMemo } from "solid-js";
 import HomeButton from "./buttons/homeButton";
 import Login from "./Login/login";
 import "./header.css"
+import RegisterButton from "../Register/RegisterButton";
 
 function Header() {
     createEffect(() => {
@@ -13,6 +14,7 @@ function Header() {
         <div class="header-bar">
             <HomeButton />
             <Login />
+            <RegisterButton />
             
         </div>
     );
