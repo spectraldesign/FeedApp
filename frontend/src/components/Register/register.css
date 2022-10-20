@@ -1,0 +1,79 @@
+.register-btn {
+    right: 0px;
+    width: 150px;
+    padding-top: 20px;
+    padding-right: 20px;
+    /* position: fixed; */
+    /* z-index: 2; */
+    text-align: center;
+}
+
+.register-btn a {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 1em;
+    padding: 0.3em 1.25em;
+    border: 1px solid #c2c7cc;
+    font-family: 'Open-Sans', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.667em;
+    text-decoration: none;
+    color: #8a9199;
+    cursor: pointer;
+    background: #fff;
+    transition: color,border-color ease 0.3s;
+    border-radius: 2em;
+    border-width: medium;
+}
+
+.register-btn a:hover {
+    border-color: #42B6F3;
+    color: #42B6F3;
+    text-decoration: none;
+    border-width: medium;
+}
+
+.container {
+    margin: auto;
+    position: relative;
+    text-align: center;
+}
+
+.form-group {
+    margin: 0 auto;
+    width: 50%;
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+}
+
+.reg-btn {
+    background-color: #42B6F3;
+    color: white;
+    border: none;
+    /* padding: 20px; */
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+.reg-btn:hover {
+    background-color: #0b3148;
+    cursor: pointer;
+}
+
+.form-control {
+    background-color: #dae0e7;
+    border: none;
+    width: 30%;
+    height: 40px;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+    
