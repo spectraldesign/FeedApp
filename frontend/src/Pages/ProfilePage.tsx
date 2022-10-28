@@ -1,10 +1,13 @@
 import { Component } from 'solid-js';
+import Profile from '../components/Profile/profile';
+import Header from '../components/Header/header';
 
 const ProfilePage: Component = () => {
     return (
-        <div>
-            <h2>ProfilePage</h2>
-        </div>
+        <>
+            <Header />
+            <Profile />
+        </>
     )
 }
 

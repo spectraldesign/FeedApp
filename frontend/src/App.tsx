@@ -7,11 +7,12 @@ import RegisterPage from './Pages/RegisterPage';
 import ProfilePage from './Pages/ProfilePage';
 import VotePage from './Pages/VotePage';
 import CreatePollPage from './Pages/CreatePollPage';
+import Profile from './components/Profile/profile';
 
 const App: Component = () => {
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -19,7 +20,8 @@ const App: Component = () => {
         <Route path="/polls/:id" element={<VotePage />} />
         <Route path="/profile/polls" element={<MyPollsPage />} />
         <Route path="/poll/create" element={<CreatePollPage />} />
-      </Routes>
+      </Routes> */}
+      <ProfilePage />
     </>
   );
 };
