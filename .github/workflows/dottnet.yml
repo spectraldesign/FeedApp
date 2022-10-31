@@ -7,7 +7,7 @@ on:
   push:
     branches: [ "dotnetBackend" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dotnetBackend" ]
 
 jobs:
   build:
