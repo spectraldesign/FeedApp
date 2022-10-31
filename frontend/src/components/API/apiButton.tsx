@@ -1,19 +1,19 @@
 import { createSignal, createEffect, createMemo } from "solid-js";
 // import { css } from 'emotion';
-import "./homeButton.css";
+import "./apiButton.css";
 
-function HomeButton() {
+function APIButton() {
     createEffect(() => {
         console.log("Button has been pressed");
       });
     return (
         <div>
-            <div class="homebutton">
-                <a href="/">FeedApp</a>
+            <div class="apibutton">
+                <a href="/">API</a>
             </div>
         </div>
     );
   }
 
-  export default HomeButton;
+  export default APIButton;
 
