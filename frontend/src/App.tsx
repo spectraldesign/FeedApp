@@ -7,6 +7,8 @@ import RegisterPage from './Pages/RegisterPage';
 import ProfilePage from './Pages/ProfilePage';
 import VotePage from './Pages/VotePage';
 import CreatePollPage from './Pages/CreatePollPage';
+import Profile from './components/Profile/profile';
+
 
 const App: Component = () => {
   return (
