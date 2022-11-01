@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "vR1PEDFLrDZfrg851aNtdhznmKjUs1kzTm0btzx0rvg=",
+  "Source": "API",
+  "BasePath": "_content/API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "API/wwwroot",
+      "Source": "API",
+      "ContentRoot": "/Users/pete/Desktop/FeedApp/Backend/API/wwwroot/",
+      "BasePath": "_content/API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/pete/Desktop/FeedApp/Backend/API/wwwroot/swagger-ui/SwaggerDark.css",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/pete/Desktop/FeedApp/Backend/API/wwwroot/",
+      "BasePath": "_content/API",
+      "RelativePath": "swagger-ui/SwaggerDark.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/swagger-ui/SwaggerDark.css"
+    }
+  ]
+}
