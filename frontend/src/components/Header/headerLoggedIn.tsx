@@ -3,20 +3,20 @@ import { createSignal, createEffect, createMemo } from "solid-js";
 // import "./homeButton.css";
 import HomeButton from "./buttons/homeButton";
 import Login from "./Login/login";
-import "./header.css"
+import "./headerloggedin.css"
 import RegisterButton from "../Register/RegisterButton";
+import ProfileButton from "./Profile/profileButton";
 
-function Header() {
+function HeaderLoggedIn() {
     
     return (
         <div class="header-bar">
             <HomeButton />
-            <Login />
-            {/* <RegisterButton /> */}
+            <ProfileButton />
             
         </div>
     );
   }
 
-  export default Header;
+  export default HeaderLoggedIn;
 
