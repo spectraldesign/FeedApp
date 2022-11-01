@@ -1,5 +1,6 @@
 import { Component } from 'solid-js';
 import { registerForm } from './RegisterForm';
+import "./register.css";
 
 const Register: Component = () => {
     const { form, updateFormField, submit, clearField } = registerForm();
