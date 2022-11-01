@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.VoteDTOs;
 using Application.Repositories;
 using MediatR;
 

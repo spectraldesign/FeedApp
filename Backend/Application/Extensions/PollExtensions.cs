@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.PollDTOs;
 using Domain.Entities;
 
 namespace Application.Extentions

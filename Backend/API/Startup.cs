@@ -47,7 +47,11 @@ namespace FeedApp
             app.UseHttpsRedirection();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FeedApp"));
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FeedApp");
+                c.InjectStylesheet("/swagger-ui/SwaggerDark.css");
+            });
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();

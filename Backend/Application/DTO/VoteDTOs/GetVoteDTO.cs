@@ -1,4 +1,4 @@
-﻿namespace Application.DTO
+﻿namespace Application.DTO.VoteDTOs
 {
     //Note: Does not return the user that voted to keep votes anonymous.
     public class GetVoteDTO

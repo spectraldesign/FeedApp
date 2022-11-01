@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.PollDTOs;
 using Application.Extentions;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -12,7 +12,7 @@ namespace Application.Repositories
         Task<GetPollDTO> GetPollById(Guid id);
         Task<List<GetPollDTO>> GetAllPolls();
         Task<int> CreatePoll(CreatePollDTO createPollDTO);
-        Task<int> UpdatePollAsync(Guid Id, CreatePollDTO updatePollDTO);
+        Task<int> UpdatePollAsync(Guid Id, UpdatePollDTO updatePollDTO);
         Task<int> DeletePollAsync(Guid pollId);
         Task<int> ClosePollAsync(Guid pollId);
 
@@ -76,7 +76,7 @@ namespace Application.Repositories
             return saved;
         }
 
-        public async Task<int> UpdatePollAsync(Guid pollId, CreatePollDTO updatePoll)
+        public async Task<int> UpdatePollAsync(Guid pollId, UpdatePollDTO updatePoll)
         {
             User currentUser = await _genericExtension.GetCurrentUserAsync();
             var dbPoll = await _context.Polls.Where(x => x.Id == pollId).FirstOrDefaultAsync();

@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.PollDTOs;
 using Application.Repositories;
 using MediatR;
 namespace Application.Commands

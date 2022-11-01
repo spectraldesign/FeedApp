@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Application.DTO
+namespace Application.DTO.PollDTOs
 {
     public class PollDTO
     {

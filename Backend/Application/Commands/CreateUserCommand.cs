@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.UserDTOs;
 using Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

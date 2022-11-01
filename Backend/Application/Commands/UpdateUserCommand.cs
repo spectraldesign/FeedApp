@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.UserDTOs;
 using Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -7,9 +7,9 @@ namespace Application.Commands
 {
     public class UpdateUserCommand : IRequest<IdentityResult>
     {
-        public readonly CreateUserDTO _updateUserDTO;
+        public readonly UpdateUserDTO _updateUserDTO;
         public readonly string _userId;
-        public UpdateUserCommand(CreateUserDTO updateDTO)
+        public UpdateUserCommand(UpdateUserDTO updateDTO)
         {
             _updateUserDTO = updateDTO;
         }

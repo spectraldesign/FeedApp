@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.UserDTOs;
 using Application.Extentions;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -17,7 +17,7 @@ namespace Application.Repositories
         Task<User> GetUserById(string id);
         Task<List<User>> GetAllUsers();
         Task<IdentityResult> CreateUser(CreateUserDTO createUserDTO);
-        Task<IdentityResult> UpdateUserAsync(CreateUserDTO updateUserDTO);
+        Task<IdentityResult> UpdateUserAsync(UpdateUserDTO updateUserDTO);
         Task<bool> ValidateUserAsync(LoginUserDTO loginDto);
         Task<string> CreateTokenAsync();
     }
@@ -52,7 +52,7 @@ namespace Application.Repositories
             return await _userManager.CreateAsync(user, userRegistration.Password);
         }
 
-        public async Task<IdentityResult> UpdateUserAsync(CreateUserDTO updateUser)
+        public async Task<IdentityResult> UpdateUserAsync(UpdateUserDTO updateUser)
         {
             User currentUser = await _genericExtension.GetCurrentUserAsync();
             var dbUser = await _context.Users.Where(x => x.Id == currentUser.Id).FirstOrDefaultAsync();

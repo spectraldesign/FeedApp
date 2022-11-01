@@ -12,5 +12,6 @@ namespace Database
         }
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Vote> Votes { get; set; }
+        public DbSet<IoTDevice> IoTDevices { get; set; }
     }
 }

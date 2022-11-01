@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.PollDTOs;
 using Application.Repositories;
 using MediatR;
 
@@ -6,13 +6,13 @@ namespace Application.Commands
 {
     public class UpdatePollCommand : IRequest<int>
     {
-        public readonly CreatePollDTO _createPollDTO;
+        public readonly UpdatePollDTO _updatePollDTO;
         public readonly Guid _pollId;
 
-        public UpdatePollCommand(Guid Id, CreatePollDTO createPollDTO)
+        public UpdatePollCommand(Guid Id, UpdatePollDTO updatePollDTO)
         {
             _pollId = Id;
-            _createPollDTO = createPollDTO;
+            _updatePollDTO = updatePollDTO;
         }
     }
     public class UpdatePollCommandHandler : IRequestHandler<UpdatePollCommand, int>
@@ -26,7 +26,7 @@ namespace Application.Commands
 
         public async Task<int> Handle(UpdatePollCommand command, CancellationToken token)
         {
-            return await _pollRepository.UpdatePollAsync(command._pollId, command._createPollDTO);
+            return await _pollRepository.UpdatePollAsync(command._pollId, command._updatePollDTO);
         }
     }
 }

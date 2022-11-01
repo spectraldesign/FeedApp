@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.UserDTOs;
 using Application.Extentions;
 using Application.Repositories;
 using Domain.Entities;

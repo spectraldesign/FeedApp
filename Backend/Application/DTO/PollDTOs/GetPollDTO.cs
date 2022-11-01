@@ -1,4 +1,4 @@
-﻿namespace Application.DTO
+﻿namespace Application.DTO.PollDTOs
 {
     public class GetPollDTO
     {

@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.UserDTOs;
 using Domain.Entities;
 namespace Application.Extentions
 {

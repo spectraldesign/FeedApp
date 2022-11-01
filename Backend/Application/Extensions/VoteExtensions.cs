@@ -1,4 +1,4 @@
-﻿using Application.DTO;
+﻿using Application.DTO.VoteDTOs;
 using Domain.Entities;
 
 namespace Application.Extensions
