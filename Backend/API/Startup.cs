@@ -22,6 +22,16 @@ namespace FeedApp
             services.AddHealthChecks();
 
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:3000")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
 
             services.AddSwagger();
 
@@ -45,7 +55,7 @@ namespace FeedApp
             app.UseHealthChecks("/api/health");
 
             app.UseHttpsRedirection();
-
+            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -55,7 +65,9 @@ namespace FeedApp
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
-            if (env.IsDevelopment()) app.UseCors("DangerZone");
+            app.UseCors("AllowAll");
+            
+            if (env.IsDevelopment()) app.UseCors("AllowAll");
             app.UseAuthorization();
 
             app.UseEndpoints(e =>

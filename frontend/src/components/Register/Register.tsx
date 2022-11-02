@@ -1,15 +1,43 @@
 import { Component } from 'solid-js';
 import { registerForm } from './RegisterForm';
 import "./register.css";
+import { useNavigate } from '@solidjs/router';
 
 const Register: Component = () => {
     const { form, updateFormField, submit, clearField } = registerForm();
+    const navigate = useNavigate();
 
     const handleSubmit = (e: Event) => {
         const data = submit(form);
         e.preventDefault();
         console.log(data);   
-    }
+        fetch('https://localhost:7280/api/user/register', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    console.log(response);
+                    alert('Registration successful');
+                    navigate('/login');
+                    return response;
+                } else {
+                    alert('Invalid credentials');
+                }
+            }
+        )
+            .then(data => {
+                console.log(data?.body);
+                console.log(localStorage);
+
+            })
+        };
+    
 
     return (
         <div class="container">

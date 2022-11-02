@@ -12,14 +12,12 @@ const submit = (form: FormFields) => {
   const dataToSubmit = {
     firstname: form.firstname,
     lastname: form.lastname,
-    username: form.username,
+    userName: form.username,
     email: form.email,
     password: form.password
   };
 
   return dataToSubmit;
-  // should be submitting your form to some backend service
-  console.log(`submitting ${JSON.stringify(dataToSubmit)}`);
 };
 
 const registerForm = () => {
