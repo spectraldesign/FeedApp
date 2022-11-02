@@ -1,12 +1,13 @@
 import { Component } from 'solid-js';
 import { loginForm } from './LoginForm';
 import RegisterButton from '../Register/RegisterButton';
-import { NavLink } from '@solidjs/router';
+import { useNavigate, NavLink } from '@solidjs/router';
 import { createResource } from 'solid-js';
 import "./login.css";
 
 const Login: Component = () => {
     const { form, updateFormField, submit, clearField } = loginForm();
+    const navigate = useNavigate();
 
     const handleSubmit = (e: Event) => {
         const data = submit(form);
@@ -21,15 +22,22 @@ const Login: Component = () => {
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response)
-            .then(data => {
-                console.log(data);
-                if(data.status === 200) {
+            .then(response => {
+                if (response.status === 200) {
+                    console.log(response);
                     alert('Login successful');
+                    navigate('/');
+                    return response;
                 } else {
-                    alert('Login failed');
+                    alert('Invalid credentials');
                 }
-            })  
+            }
+        )
+            .then(data => {
+                console.log(data?.body);
+                console.log(localStorage);
+
+            })
         };
     
 
