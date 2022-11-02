@@ -2,6 +2,7 @@ import { Component } from 'solid-js';
 import { loginForm } from './LoginForm';
 import RegisterButton from '../Register/RegisterButton';
 import { NavLink } from '@solidjs/router';
+import { createResource } from 'solid-js';
 import "./login.css";
 
 const Login: Component = () => {
@@ -9,9 +10,28 @@ const Login: Component = () => {
 
     const handleSubmit = (e: Event) => {
         const data = submit(form);
+        console.log(data);
         e.preventDefault();
-        console.log(data);   
-    }
+        fetch('https://localhost:7280/api/user/login', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response)
+            .then(data => {
+                console.log(data);
+                if(data.status === 200) {
+                    alert('Login successful');
+                } else {
+                    alert('Login failed');
+                }
+            })  
+        };
+    
 
     return (
         <div class="container">
@@ -25,15 +45,15 @@ const Login: Component = () => {
                         class="form-control" 
                         id="username" 
                         placeholder="Enter username" 
-                        value={form.username}
-                        onInput={updateFormField('username')}
+                        value={form.userName}
+                        onInput={updateFormField('userName')}
                         required 
                     />
                 </div>
                 <div class="form-group">
                     <label class="label" for="password">Password:</label>
                     <input 
-                        type="text" 
+                        type="password" 
                         class="form-control" 
                         id="password" 
                         placeholder="Enter password"

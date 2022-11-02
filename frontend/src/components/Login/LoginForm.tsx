@@ -1,13 +1,13 @@
 import { createStore } from "solid-js/store";
 
 type FormFields = {
-  username?: string;
+  userName?: string;
   password?: string;
 };
 
 const submit = (form: FormFields) => {
   const dataToSubmit = {
-    username: form.username,
+    userName: form.userName,
     password: form.password
   };
 
@@ -18,7 +18,7 @@ const submit = (form: FormFields) => {
 
 const loginForm = () => {
   const [form, setForm] = createStore<FormFields>({
-    username: "",
+    userName: "",
     password: ""
   });
 
