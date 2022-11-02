@@ -46,6 +46,8 @@ namespace FeedApp
 
             app.UseHttpsRedirection();
 
+
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

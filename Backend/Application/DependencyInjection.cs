@@ -18,6 +18,7 @@ namespace Application
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddTransient<IPollRepository, PollRepository>();
             services.AddTransient<IVoteRepository, VoteRepository>();
+            services.AddTransient<IIotDeviceRepository, IoTDeviceRepository>();
             services.AddTransient<UserManager<User>>();
             services.AddTransient<IGenericExtension, GenericExtensions>();
             return services;
