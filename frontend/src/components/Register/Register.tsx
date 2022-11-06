@@ -69,18 +69,6 @@ const Register: Component = () => {
                     />
                 </div>
                 <div class="form-group">
-                    <label class="label" for="username">Username:</label>
-                    <input 
-                        type="text" 
-                        class="form-control" 
-                        id="username" 
-                        placeholder="Enter username" 
-                        value={form.username}
-                        onInput={updateFormField('username')}
-                        required 
-                    />
-                </div>
-                <div class="form-group">
                     <label class="label" for="email">Email:</label>
                     <input 
                         type="text" 
@@ -89,6 +77,18 @@ const Register: Component = () => {
                         placeholder="Enter email" 
                         value={form.email}
                         onInput={updateFormField('email')}
+                        required 
+                    />
+                </div>
+                <div class="form-group">
+                    <label class="label" for="username">Username:</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="username" 
+                        placeholder="Enter username" 
+                        value={form.username}
+                        onInput={updateFormField('username')}
                         required 
                     />
                 </div>

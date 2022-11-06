@@ -5,6 +5,7 @@ import HomeButton from "./buttons/homeButton";
 import Login from "./Login/login";
 import "./header.css"
 import RegisterButton from "../Register/RegisterButton";
+import ProfileButton from "./Profile/profileButton";
 
 function Header() {
     if (!(localStorage.getItem("Test") === null)) {
@@ -12,8 +13,7 @@ function Header() {
             return (
                 <div class="header-bar">
                     <HomeButton />
-                    {/* <Login /> */}
-                    <RegisterButton />
+                    <ProfileButton />
                 </div>
             )
         }
@@ -22,7 +22,6 @@ function Header() {
                 <div class="header-bar">
                 <HomeButton />
                 <Login />
-                {/* <RegisterButton /> */}
                 </div>
             );
         }
@@ -31,8 +30,6 @@ function Header() {
         <div class="header-bar">
             <HomeButton />
             <Login />
-            {/* <RegisterButton /> */}
-            
         </div>
     );
   }
