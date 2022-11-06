@@ -93,3 +93,15 @@
 /Users/pete/Desktop/FeedApp/Backend/API/obj/Debug/net6.0/API.xml
 /Users/pete/Desktop/FeedApp/Backend/API/obj/Debug/net6.0/API.pdb
 /Users/pete/Desktop/FeedApp/Backend/API/obj/Debug/net6.0/API.genruntimeconfig.cache
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/DnsClient.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/MongoDB.Bson.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/MongoDB.Driver.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/MongoDB.Driver.Core.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/RabbitMQ.Client.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/SharpCompress.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/Snappier.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/ZstdSharp.dll
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
+/Users/pete/Desktop/FeedApp/Backend/API/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll

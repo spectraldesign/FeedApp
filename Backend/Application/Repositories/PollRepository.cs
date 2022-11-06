@@ -5,6 +5,7 @@ using Domain.Interfaces;
 using IdGen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Application.Messaging;
 
 namespace Application.Repositories
 {
@@ -25,7 +26,10 @@ namespace Application.Repositories
         private readonly IConfiguration _configuration;
         private readonly IdGenerator _idGenerator;
 
+        protected RabbitMQClient _rabbitMQClient = new RabbitMQClient();
+        
         public PollRepository(IGenericExtension genericExtension, IFeedAppDbContext context, IConfiguration configuration, IdGenerator idGenerator)
+
         {
             _genericExtension = genericExtension;
             _context = context;
@@ -80,6 +84,9 @@ namespace Application.Repositories
             poll.Votes = new List<Vote>();
             await _context.Polls.AddAsync(poll);
             var saved = await _context.SaveChangesAsync();
+            Console.WriteLine("saved" + saved);
+            Console.WriteLine("poll" + poll.Question);
+            _rabbitMQClient.PublishNewPoll(poll);
             return saved;
         }
 
@@ -124,6 +131,7 @@ namespace Application.Repositories
             dbPoll.IsClosed = true;
             var update = _context.Polls.Update(dbPoll);
             var res = await _context.SaveChangesAsync();
+            _rabbitMQClient.PublishClosedPoll(dbPoll);
             return res;
         }
     }

@@ -2,6 +2,8 @@
 using Application;
 using Database;
 using FeedApp.Extensions;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace FeedApp
 {
     public class Startup
@@ -20,6 +22,8 @@ namespace FeedApp
             services.AddApplication();
 
             services.AddHealthChecks();
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             services.AddControllers();
             services.AddCors(options =>

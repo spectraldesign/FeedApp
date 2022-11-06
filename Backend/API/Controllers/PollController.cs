@@ -128,6 +128,7 @@ namespace API.Controllers
                     statusCode: StatusCodes.Status403Forbidden
                     );
             }
+            //_rabbitMQClient.PublishClosePoll(result);
             return result == 1 ? Ok($"Poll {Id} closed.") : new BadRequestObjectResult(result);
         }
 

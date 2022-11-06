@@ -22,7 +22,9 @@ namespace Application
             services.AddTransient<IIotDeviceRepository, IoTDeviceRepository>();
             services.AddTransient<UserManager<User>>();
             services.AddTransient<IGenericExtension, GenericExtensions>();
+
             services.AddIdGen(39);
+
             return services;
         }
     }
