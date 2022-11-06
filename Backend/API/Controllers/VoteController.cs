@@ -36,7 +36,7 @@ namespace API.Controllers
         /// <response code="200">Votes</response>
         [AllowAnonymous]
         [HttpGet("votesByPoll/{pollId}")]
-        public async Task<ActionResult<List<GetVoteDTO>>> GetVotesByPollId(Guid pollId)
+        public async Task<ActionResult<List<GetVoteDTO>>> GetVotesByPollId(string pollId)
         {
             var result = await Mediator.Send(new GetVotesByPollIdQuery(pollId));
             return Ok(result);
@@ -66,7 +66,7 @@ namespace API.Controllers
         [HttpPost("{pollId}")]
         [ProducesResponseType(201)]
         [ProducesResponseType(403)]
-        public async Task<ActionResult<int>> CreateVote(Guid pollId, [FromBody] CreateVoteDTO createVoteDTO)
+        public async Task<ActionResult<int>> CreateVote(string pollId, [FromBody] CreateVoteDTO createVoteDTO)
         {
             var result = await Mediator.Send(new CreateVoteCommand(pollId, createVoteDTO));
             if (result == 0)

@@ -5,9 +5,9 @@ namespace Application.Commands
 {
     public class DeletePollCommand : IRequest<int>
     {
-        public readonly Guid _pollId;
+        public readonly string _pollId;
 
-        public DeletePollCommand(Guid pollId)
+        public DeletePollCommand(string pollId)
         {
             _pollId = pollId;
         }

@@ -5,7 +5,7 @@
     {
         public Guid Id { get; set; }
         public bool IsPositive { get; set; }
-        public Guid VotedPollId { get; set; }
+        public string VotedPollId { get; set; }
         public string VotedPollQuestion { get; set; }
     }
 }

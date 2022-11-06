@@ -3,13 +3,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="MediatR" Version="11.0.0"/>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10"/>
+
+	<ItemGroup>
+		<PackageReference Include="IdGen" Version="3.0.2" />
+		<PackageReference Include="IdGen.DependencyInjection" Version="3.0.0" />
+		<PackageReference Include="MediatR" Version="11.0.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="RabbitMQ.Client" Version="6.4.0"/>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj"/>
-  </ItemGroup>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Database\Database.csproj" />
+	</ItemGroup>
+	
+
 </Project>
+

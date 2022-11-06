@@ -2,7 +2,7 @@
 {
     public class Poll
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Question { get; set; }
         public bool IsPrivate { get; set; }
         public bool IsClosed { get; set; }

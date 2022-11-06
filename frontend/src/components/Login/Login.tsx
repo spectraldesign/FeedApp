@@ -27,15 +27,17 @@ const Login: Component = () => {
                     console.log(response);
                     alert('Login successful');
                     navigate('/');
-                    return response;
+                    return response.text();
                 } else {
                     alert('Invalid credentials');
                 }
             }
         )
             .then(data => {
-                console.log(data?.body);
-                console.log(localStorage);
+                // console.log(data);
+                localStorage.setItem("token", JSON.stringify(data));
+                localStorage.setItem("loggedIn", JSON.stringify(true));
+                // console.log(localStorage);
 
             })
         };

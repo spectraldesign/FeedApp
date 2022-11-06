@@ -9,7 +9,7 @@ function APIButton() {
     return (
         <div>
             <div class="apibutton">
-                <a href="/">API</a>
+                <a href="https://localhost:7280/swagger/index.html">API</a>
             </div>
         </div>
     );

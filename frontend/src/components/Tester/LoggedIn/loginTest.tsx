@@ -3,16 +3,25 @@ import { createSignal, createEffect, createMemo } from "solid-js";
 import "./loginTest.css";
 
 function LoginTest() {
-    createEffect(() => {
-        console.log("Button has been pressed");
-    });
-    const [loggedIn, setLoggedIn] = createSignal(false);
-    const toggle = () => setLoggedIn(!loggedIn());
+    const testFunc = () => {
+        console.log('added true to localstorage')
+        if (!(localStorage.getItem("Test") === null)) {
+            if (localStorage.getItem("Test") == JSON.stringify(true)) {
+                localStorage.setItem("Test", JSON.stringify(false));
+            }
+            else {
+                localStorage.setItem("Test", JSON.stringify(true));
+            }
+        }
+        else {
+            localStorage.setItem("Test", JSON.stringify(true));
+        }
+      }
 
     return (
         <div>
             <div class="loginbutton">
-                <a href="/">Login Test</a>
+                <a href="/" onclick={testFunc}>Login Test</a>
             </div>
         </div>
     );
