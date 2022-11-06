@@ -1,0 +1,82 @@
+.poll-result {
+    text-align: center;
+    display: block;
+    margin-top: 200px;
+}
+
+.poll-result-form {
+    width: 100%;
+}
+
+.poll-question{
+    margin-bottom: 3rem;
+    position: relative;;
+}
+
+.all-elements{
+    width: 40%;
+    display: inline-block;
+
+}
+
+.container {
+    background-color: black;
+    width: 100%;
+        border-radius: 12px;
+
+}
+
+.result {
+    background-color: #256CE2;
+    margin-bottom:20px;
+    color: white;
+    padding: 1%;
+    text-align: right;
+    font-size: 20px;
+        border-radius: 12px;
+}
+
+.yes {
+    width: attr(data-width px);
+
+}
+
+.no {
+    width: 60%;
+}
+
+
+
+.submit-answer-btn {
+    background-color: #42B6F3;
+    color: white;
+    border: none;
+    /* padding: 20px; */
+    padding: 9px 45px 9px 45px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+
+
+.text-and-button{
+    display: flex;
+    margin-bottom: 5rem;
+
+}
+
+.text-and-button input{
+position: relative;
+left: 80%;
+}
+
+.text-and-button p {
+    position: absolute;
+ 
+
+}

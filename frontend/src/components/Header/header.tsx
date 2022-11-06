@@ -5,17 +5,31 @@ import HomeButton from "./buttons/homeButton";
 import Login from "./Login/login";
 import "./header.css"
 import RegisterButton from "../Register/RegisterButton";
+import ProfileButton from "./Profile/profileButton";
 
 function Header() {
-    createEffect(() => {
-        console.log("Button has been pressed");
-      });
+    if (!(localStorage.getItem("Test") === null)) {
+        if (localStorage.getItem("Test") == JSON.stringify(true)) {
+            return (
+                <div class="header-bar">
+                    <HomeButton />
+                    <ProfileButton />
+                </div>
+            )
+        }
+        else {
+            return (
+                <div class="header-bar">
+                <HomeButton />
+                <Login />
+                </div>
+            );
+        }
+    }
     return (
         <div class="header-bar">
             <HomeButton />
             <Login />
-            <RegisterButton />
-            
         </div>
     );
   }

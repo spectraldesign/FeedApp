@@ -3,8 +3,8 @@ import { createStore } from "solid-js/store";
 type FormFields = {
   firstname?: string;
   lastname?: string;
-  username?: string;
   email?: string;
+  username?: string;
   password?: string;
 };
 
@@ -12,22 +12,20 @@ const submit = (form: FormFields) => {
   const dataToSubmit = {
     firstname: form.firstname,
     lastname: form.lastname,
-    username: form.username,
     email: form.email,
+    userName: form.username,
     password: form.password
   };
 
   return dataToSubmit;
-  // should be submitting your form to some backend service
-  console.log(`submitting ${JSON.stringify(dataToSubmit)}`);
 };
 
 const registerForm = () => {
   const [form, setForm] = createStore<FormFields>({
     firstname: "",
     lastname: "",
-    username: "",
     email: "",
+    username: "",
     password: ""
   });
 

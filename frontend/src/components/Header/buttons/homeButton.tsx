@@ -3,9 +3,7 @@ import { createSignal, createEffect, createMemo } from "solid-js";
 import "./homeButton.css";
 
 function HomeButton() {
-    createEffect(() => {
-        console.log("Button has been pressed");
-      });
+    
     return (
         <div>
             <div class="homebutton">
