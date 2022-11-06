@@ -20,6 +20,7 @@ namespace Application.Repositories
         Task<IdentityResult> UpdateUserAsync(UpdateUserDTO updateUserDTO);
         Task<bool> ValidateUserAsync(LoginUserDTO loginDto);
         Task<string> CreateTokenAsync();
+        Task<User> GetCurrentUser();
     }
     public class UserRepository : IUserRepository
     {
@@ -39,6 +40,11 @@ namespace Application.Repositories
         public async Task<User> GetUserById(string id)
         {
             return await _context.Users.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<User> GetCurrentUser()
+        {
+            return await _genericExtension.GetCurrentUserAsync();
         }
 
         public async Task<List<User>> GetAllUsers()

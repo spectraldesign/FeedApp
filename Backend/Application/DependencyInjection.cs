@@ -1,6 +1,7 @@
 ﻿using Application.Extentions;
 using Application.Repositories;
 using Domain.Entities;
+using IdGen.DependencyInjection;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,8 +19,10 @@ namespace Application
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddTransient<IPollRepository, PollRepository>();
             services.AddTransient<IVoteRepository, VoteRepository>();
+            services.AddTransient<IIotDeviceRepository, IoTDeviceRepository>();
             services.AddTransient<UserManager<User>>();
             services.AddTransient<IGenericExtension, GenericExtensions>();
+            services.AddIdGen(39);
             return services;
         }
     }

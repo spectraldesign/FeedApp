@@ -111,5 +111,13 @@ namespace API.Controllers
             var result = await Mediator.Send(new UpdateUserCommand(updateUserDTO));
             return !result.Succeeded ? new BadRequestObjectResult(result) : StatusCode(201);
         }
+
+        [HttpGet("self")]
+        public async Task<ActionResult<LoggedInUserDTO>> GetCurrentUser()
+        {
+            var result = await Mediator.Send(new GetCurrentUserQuery());
+            if (result == null) { return new BadRequestObjectResult(result); }
+            return Ok(result);
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace Application.DTO.PollDTOs
 {
     public class PollDTO
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Question { get; set; }
         public bool IsPrivate { get; set; }
         public bool IsClosed { get; set; }
@@ -12,7 +12,7 @@ namespace Application.DTO.PollDTOs
         public User Creator { get; set; }
         public int CountVotes { get; set; }
 
-        public PollDTO(Guid id, string question, bool isPrivate, bool isClosed, DateTime endTime, User creator, int countVotes)
+        public PollDTO(string id, string question, bool isPrivate, bool isClosed, DateTime endTime, User creator, int countVotes)
         {
             Id = id;
             Question = question;

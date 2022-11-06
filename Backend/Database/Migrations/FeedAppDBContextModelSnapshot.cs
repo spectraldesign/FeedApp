@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Database.Migrations
 {
     [DbContext(typeof(FeedAppDbContext))]
-    partial class FeedAppDBContextModelSnapshot : ModelSnapshot
+    partial class FeedAppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -22,17 +22,33 @@ namespace Database.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.Poll", b =>
+            modelBuilder.Entity("Domain.Entities.IoTDevice", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IoTDevices");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Poll", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<string>("CreatorId")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("IoTDeviceId")
+                        .HasColumnType("uuid");
 
                     b.Property<bool>("IsClosed")
                         .HasColumnType("boolean");
@@ -46,6 +62,8 @@ namespace Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CreatorId");
+
+                    b.HasIndex("IoTDeviceId");
 
                     b.ToTable("Polls");
                 });
@@ -129,8 +147,8 @@ namespace Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("PollId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("PollId")
+                        .HasColumnType("text");
 
                     b.Property<bool>("Positive")
                         .HasColumnType("boolean");
@@ -285,6 +303,10 @@ namespace Database.Migrations
                         .WithMany("CreatedPolls")
                         .HasForeignKey("CreatorId");
 
+                    b.HasOne("Domain.Entities.IoTDevice", null)
+                        .WithMany("PollQueue")
+                        .HasForeignKey("IoTDeviceId");
+
                     b.Navigation("Creator");
                 });
 
@@ -352,6 +374,11 @@ namespace Database.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.IoTDevice", b =>
+                {
+                    b.Navigation("PollQueue");
                 });
 
             modelBuilder.Entity("Domain.Entities.Poll", b =>

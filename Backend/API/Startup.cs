@@ -55,7 +55,7 @@ namespace FeedApp
             app.UseHealthChecks("/api/health");
 
             app.UseHttpsRedirection();
-            
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
