@@ -7,9 +7,9 @@ namespace Application.Commands
     public class CreateVoteCommand : IRequest<int>
     {
         public readonly CreateVoteDTO _createVoteDTO;
-        public readonly Guid _pollId;
+        public readonly string _pollId;
 
-        public CreateVoteCommand(Guid pollId, CreateVoteDTO createVoteDTO)
+        public CreateVoteCommand(string pollId, CreateVoteDTO createVoteDTO)
         {
             _createVoteDTO = createVoteDTO;
             _pollId = pollId;

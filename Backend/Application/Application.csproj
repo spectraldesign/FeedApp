@@ -6,6 +6,8 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="IdGen" Version="3.0.2" />
+		<PackageReference Include="IdGen.DependencyInjection" Version="3.0.0" />
 		<PackageReference Include="MediatR" Version="11.0.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />

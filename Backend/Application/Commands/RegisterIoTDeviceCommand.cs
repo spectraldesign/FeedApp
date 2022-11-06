@@ -6,9 +6,9 @@ namespace Application.Commands
 {
     public class RegisterIoTDeviceCommand : IRequest<int>
     {
-        public readonly IoTDTO _ioTDTO;
+        public readonly CreateIoTDTO _ioTDTO;
 
-        public RegisterIoTDeviceCommand(IoTDTO ioTDTO)
+        public RegisterIoTDeviceCommand(CreateIoTDTO ioTDTO)
         {
             _ioTDTO = ioTDTO;
         }
@@ -25,7 +25,7 @@ namespace Application.Commands
 
         public async Task<int> Handle(RegisterIoTDeviceCommand command, CancellationToken token)
         {
-            return await _repository.RegisterIoTDevice(command._ioTDTO.deviceID);
+            return await _repository.RegisterIoTDevice(command._ioTDTO);
         }
     }
 }

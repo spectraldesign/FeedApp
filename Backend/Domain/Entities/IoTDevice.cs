@@ -2,6 +2,8 @@
 {
     public class IoTDevice
     {
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public List<Poll> PollQueue { get; set; }
     }
 }

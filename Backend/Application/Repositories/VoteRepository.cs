@@ -11,9 +11,9 @@ namespace Application.Repositories
     public interface IVoteRepository
     {
         Task<GetVoteDTO> GetVoteById(Guid Id);
-        Task<List<GetVoteDTO>> GetVotesByPollId(Guid pollId);
+        Task<List<GetVoteDTO>> GetVotesByPollId(string pollId);
         Task<List<GetVoteDTO>> GetYourVotes();
-        Task<int> CreateVote(Guid pollId, CreateVoteDTO createVoteDTO);
+        Task<int> CreateVote(string pollId, CreateVoteDTO createVoteDTO);
         Task<int> ChangeVote(Guid VoteId, CreateVoteDTO updateVoteDTO);
         Task<int> DeleteVote(Guid VoteId);
     }
@@ -43,7 +43,7 @@ namespace Application.Repositories
             return response;
         }
 
-        public async Task<List<GetVoteDTO>> GetVotesByPollId(Guid pollId)
+        public async Task<List<GetVoteDTO>> GetVotesByPollId(string pollId)
         {
             var response = await _context.Votes.Where(x => x.Poll.Id == pollId).Select(p => new
             GetVoteDTO()
@@ -70,7 +70,7 @@ namespace Application.Repositories
             return response;
         }
 
-        public async Task<int> CreateVote(Guid pollId, CreateVoteDTO createVoteDTO)
+        public async Task<int> CreateVote(string pollId, CreateVoteDTO createVoteDTO)
         {
             Poll poll = await _context.Polls.Where(x => x.Id == pollId).FirstOrDefaultAsync();
             if (poll == null) { return -3; }

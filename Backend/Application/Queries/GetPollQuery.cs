@@ -6,8 +6,8 @@ namespace Application.Queries
 {
     public class GetPollQuery : IRequest<GetPollDTO>
     {
-        public Guid _pollId { get; set; }
-        public GetPollQuery(Guid id)
+        public string _pollId { get; set; }
+        public GetPollQuery(string id)
         {
             _pollId = id;
         }

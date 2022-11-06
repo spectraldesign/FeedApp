@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Queries
 {
-    public class GetIoTDeviceQuery : IRequest<IoTDTO>
+    public class GetIoTDeviceQuery : IRequest<GetIoTWithQueueDTO>
     {
         public Guid _deviceId { get; set; }
         public GetIoTDeviceQuery(Guid id)
@@ -13,7 +13,7 @@ namespace Application.Queries
         }
     }
 
-    public class GetIoTDeviceQueryHandler : IRequestHandler<GetIoTDeviceQuery, IoTDTO>
+    public class GetIoTDeviceQueryHandler : IRequestHandler<GetIoTDeviceQuery, GetIoTWithQueueDTO>
     {
         private readonly IIotDeviceRepository _repository;
 
@@ -22,7 +22,7 @@ namespace Application.Queries
             _repository = repository;
         }
 
-        public async Task<IoTDTO> Handle(GetIoTDeviceQuery request, CancellationToken token)
+        public async Task<GetIoTWithQueueDTO> Handle(GetIoTDeviceQuery request, CancellationToken token)
         {
             return await _repository.GetIoTDeviceById(request._deviceId);
         }

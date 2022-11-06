@@ -2,9 +2,10 @@
 
 namespace Application.DTO.IoTDTOs
 {
-    public class IoTDTO
+    public class CreateIoTDTO
     {
         [Required]
         public Guid deviceID { get; set; }
+        public string deviceName { get; set; }
     }
 }

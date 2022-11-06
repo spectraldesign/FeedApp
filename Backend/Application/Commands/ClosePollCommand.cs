@@ -5,8 +5,8 @@ namespace Application.Commands
 {
     public class ClosePollCommand : IRequest<int>
     {
-        public readonly Guid _pollId;
-        public ClosePollCommand(Guid pollId)
+        public readonly string _pollId;
+        public ClosePollCommand(string pollId)
         {
             _pollId = pollId;
         }

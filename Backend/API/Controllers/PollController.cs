@@ -36,7 +36,7 @@ namespace API.Controllers
         /// <response code="200">Poll</response>
         [AllowAnonymous]
         [HttpGet("{Id}")]
-        public async Task<ActionResult<Poll>> getPoll(Guid Id)
+        public async Task<ActionResult<Poll>> getPoll(string Id)
         {
             var result = await Mediator.Send(new GetPollQuery(Id));
             return Ok(result);
@@ -64,10 +64,11 @@ namespace API.Controllers
         /// <returns>Poll {id} updated</returns>
         /// <response code="200">Poll {id} updated</response>
         /// <response code="403">Forbidden</response>
+        /// /// <response code="404">Poll not found</response>
         [HttpPut("{Id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
-        public async Task<ActionResult<int>> updatePoll(Guid Id, [FromBody] UpdatePollDTO updatePollDTO)
+        public async Task<ActionResult<int>> updatePoll(string Id, [FromBody] UpdatePollDTO updatePollDTO)
         {
             var result = await Mediator.Send(new UpdatePollCommand(Id, updatePollDTO));
             if (result == 0)
@@ -85,6 +86,14 @@ namespace API.Controllers
                     statusCode: StatusCodes.Status403Forbidden
                     );
             }
+            if (result == -2)
+            {
+                return Problem(
+                    title: "Error, no such poll.",
+                    detail: $"Poll with id {Id} not found.",
+                    statusCode: StatusCodes.Status404NotFound
+                    );
+            }
             return Ok($"Poll {Id} updated");
         }
 
@@ -95,13 +104,22 @@ namespace API.Controllers
         /// <returns>Poll {id} closed.</returns>
         /// <response code="200">Poll {id} closed.</response>
         /// <response code="403">Forbidden</response>
+        /// /// <response code="404">Poll not found</response>
         [HttpPut("{Id}/close")]
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
-        public async Task<ActionResult<int>> closePoll(Guid Id)
+        public async Task<ActionResult<int>> closePoll(string Id)
         {
             var result = await Mediator.Send(new ClosePollCommand(Id));
             if (result == -1)
+            {
+                return Problem(
+                    title: "Error, no such poll.",
+                    detail: $"Poll with id {Id} not found.",
+                    statusCode: StatusCodes.Status404NotFound
+                    );
+            }
+            if (result == -2)
             {
                 return Problem(
                     title: $"Permission denied, cannot close poll with id: {Id}",
@@ -119,13 +137,22 @@ namespace API.Controllers
         /// <returns>Poll {id} deleted</returns>
         /// <response code="200">Poll {id} deleted</response>
         /// <response code="403">Forbidden</response>
+        /// /// <response code="404">Poll not found</response>
         [HttpDelete("{Id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
-        public async Task<ActionResult<int>> deletePoll(Guid Id)
+        public async Task<ActionResult<int>> deletePoll(string Id)
         {
             var result = await Mediator.Send(new DeletePollCommand(Id));
             if (result == -1)
+            {
+                return Problem(
+                    title: "Error, no such poll.",
+                    detail: $"Poll with id {Id} not found.",
+                    statusCode: StatusCodes.Status404NotFound
+                    );
+            }
+            if (result == -2)
             {
                 return Problem(
                     title: $"Permission denied, cannot delete poll with id: {Id}",

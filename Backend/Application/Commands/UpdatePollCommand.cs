@@ -7,9 +7,9 @@ namespace Application.Commands
     public class UpdatePollCommand : IRequest<int>
     {
         public readonly UpdatePollDTO _updatePollDTO;
-        public readonly Guid _pollId;
+        public readonly string _pollId;
 
-        public UpdatePollCommand(Guid Id, UpdatePollDTO updatePollDTO)
+        public UpdatePollCommand(string Id, UpdatePollDTO updatePollDTO)
         {
             _pollId = Id;
             _updatePollDTO = updatePollDTO;

@@ -4,12 +4,12 @@ using MediatR;
 
 namespace Application.Queries
 {
-    public class GetAllIoTDevicesQuery : IRequest<List<IoTDTO>>
+    public class GetAllIoTDevicesQuery : IRequest<List<CreateIoTDTO>>
     {
         public GetAllIoTDevicesQuery() { }
     }
 
-    public class GetAllIoTDevicesQueryHandler : IRequestHandler<GetAllIoTDevicesQuery, List<IoTDTO>>
+    public class GetAllIoTDevicesQueryHandler : IRequestHandler<GetAllIoTDevicesQuery, List<CreateIoTDTO>>
     {
         private readonly IIotDeviceRepository _repository;
 
@@ -18,7 +18,7 @@ namespace Application.Queries
             _repository = repository;
         }
 
-        public async Task<List<IoTDTO>> Handle(GetAllIoTDevicesQuery request, CancellationToken token)
+        public async Task<List<CreateIoTDTO>> Handle(GetAllIoTDevicesQuery request, CancellationToken token)
         {
             return await _repository.GetIoTDevices();
         }
