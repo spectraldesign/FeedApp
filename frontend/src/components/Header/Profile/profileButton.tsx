@@ -11,7 +11,7 @@ function ProfileButton() {
     <>
       <div class='login-btn'>
         {/* <button onClick={toggle}>Log out</button> */}
-        <NavLink href='/login' class="testertester"><i class='fas fa-user-alt' style='font-size:15px;color:#c2c7cc;'></i> Profile </NavLink>
+        <NavLink href='/profile' class="testertester"><i class='fas fa-user-alt' style='font-size:15px;color:#c2c7cc;'></i> Profile </NavLink>
         {/* <i class='fas fa-user-alt' style='font-size:10px;color:white;'>Profile</i> */}
         {/* <a href="/" onClick={toggle}>Log out</a> */}
       </div>

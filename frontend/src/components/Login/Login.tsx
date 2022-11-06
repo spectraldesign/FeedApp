@@ -27,7 +27,7 @@ const Login: Component = () => {
                     console.log(response);
                     alert('Login successful');
                     navigate('/');
-                    return response.text;
+                    return response.text();
                 } else {
                     alert('Invalid credentials');
                 }
