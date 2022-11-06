@@ -2846,7 +2846,8 @@
           "Database": "1.0.0",
           "MediatR": "11.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.0.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.10"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.10",
+          "RabbitMQ.Client": "6.4.0"
         },
         "compile": {
           "bin/placeholder/Application.dll": {}

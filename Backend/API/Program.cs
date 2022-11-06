@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 /// <summary>
 /// Entry point of program
 /// </summary>
@@ -9,6 +11,12 @@ namespace FeedApp.api
         {
             var host = CreateHostBuilder(args).Build();
             await host.RunAsync();
+
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = ReferenceHandler.Preserve,
+                WriteIndented = true
+            };
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

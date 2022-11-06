@@ -10,6 +10,7 @@ namespace Application.Commands
         public CreatePollCommand(CreatePollDTO createPollDTO)
         {
             _createPollDTO = createPollDTO;
+            Console.WriteLine(_createPollDTO);
         }
     }
 

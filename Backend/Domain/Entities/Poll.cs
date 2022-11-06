@@ -7,6 +7,7 @@
         public bool IsPrivate { get; set; }
         public bool IsClosed { get; set; }
         public DateTime EndTime { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual User Creator { get; set; }
         public virtual ICollection<Vote> Votes { get; set; }
     }

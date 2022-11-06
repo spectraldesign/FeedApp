@@ -20,6 +20,7 @@ namespace Application
             services.AddTransient<IVoteRepository, VoteRepository>();
             services.AddTransient<UserManager<User>>();
             services.AddTransient<IGenericExtension, GenericExtensions>();
+                
             return services;
         }
     }

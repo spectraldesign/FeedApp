@@ -4,6 +4,7 @@ using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Application.Messaging;
 
 namespace Application.Repositories
 {
@@ -22,6 +23,8 @@ namespace Application.Repositories
         private readonly IGenericExtension _genericExtension;
         private readonly IFeedAppDbContext _context;
         private readonly IConfiguration _configuration;
+
+        protected RabbitMQClient _rabbitMQClient = new RabbitMQClient();
 
         public PollRepository(IGenericExtension genericExtension, IFeedAppDbContext context, IConfiguration configuration)
         {
@@ -73,6 +76,9 @@ namespace Application.Repositories
             poll.Votes = new List<Vote>();
             await _context.Polls.AddAsync(poll);
             var saved = await _context.SaveChangesAsync();
+            Console.WriteLine("saved" + saved);
+            Console.WriteLine("poll" + poll.Question);
+            _rabbitMQClient.PublishNewPoll(poll);
             return saved;
         }
 
@@ -114,6 +120,7 @@ namespace Application.Repositories
             dbPoll.IsClosed = true;
             var update = _context.Polls.Update(dbPoll);
             var res = await _context.SaveChangesAsync();
+            _rabbitMQClient.PublishClosedPoll(dbPoll);
             return res;
         }
     }
