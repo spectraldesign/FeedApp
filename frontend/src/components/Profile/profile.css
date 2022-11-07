@@ -25,7 +25,8 @@
 
 .firstname {
     background-color: #8a9199;
-    width: 30%;
+    /* width: 30%; */
+    min-width: 30%;
     display: inline-block;
     border-radius: 5em;
     padding: 10px;
@@ -35,7 +36,8 @@
 
 .username {
     background-color: #8a9199;
-    width: 30%;
+    /* width: 30%; */
+    min-width: 30%;
     display: inline-block;
     border-radius: 5em;
     padding: 10px;
@@ -45,7 +47,8 @@
 
 .email {
     background-color: #8a9199;
-    width: 30%;
+    /* width: 30%; */
+    min-width: 30%;
     display: inline-block;
     border-radius: 5em;
     padding: 10px;
