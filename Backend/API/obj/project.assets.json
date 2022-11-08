@@ -166,6 +166,32 @@
           "lib/net5.0/IdentityModel.dll": {}
         }
       },
+      "IdGen/3.0.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/IdGen.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/IdGen.dll": {}
+        }
+      },
+      "IdGen.DependencyInjection/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "IdGen": "3.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/IdGen.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/IdGen.DependencyInjection.dll": {}
+        }
+      },
       "MediatR/11.0.0": {
         "type": "package",
         "dependencies": {
@@ -2844,6 +2870,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Database": "1.0.0",
+          "IdGen": "3.0.2",
+          "IdGen.DependencyInjection": "3.0.0",
           "MediatR": "11.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.10",
@@ -3139,6 +3167,34 @@
         "lib/netstandard2.0/IdentityModel.dll",
         "lib/netstandard2.0/IdentityModel.pdb",
         "lib/netstandard2.0/IdentityModel.xml"
+      ]
+    },
+    "IdGen/3.0.2": {
+      "sha512": "JsR1rBaQP4eVlsvZl+jEr/JrAip5q5KlfWDoYwq/dUU1qVia1slTVqod6C52wXsXwiYJHgZW9B8GC0jH8iz/eA==",
+      "type": "package",
+      "path": "idgen/3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "idgen.3.0.2.nupkg.sha512",
+        "idgen.nuspec",
+        "lib/netstandard1.1/IdGen.dll",
+        "lib/netstandard1.1/IdGen.xml",
+        "logo.png"
+      ]
+    },
+    "IdGen.DependencyInjection/3.0.0": {
+      "sha512": "Neb4xmPel7e0NrZAzgzYuxZfs++G9yWxvUALE+HUoYNDdbeiUt4b+r5THBtI2wFspW0Y7oUvUbcGhNdPnXdpzw==",
+      "type": "package",
+      "path": "idgen.dependencyinjection/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "idgen.dependencyinjection.3.0.0.nupkg.sha512",
+        "idgen.dependencyinjection.nuspec",
+        "lib/netstandard2.0/IdGen.DependencyInjection.dll",
+        "lib/netstandard2.0/IdGen.DependencyInjection.xml",
+        "logo.png"
       ]
     },
     "MediatR/11.0.0": {
@@ -9391,11 +9447,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/pete/Desktop/FeedApp/Backend/API/API.csproj",
+      "projectUniqueName": "/Users/pete/Documents/FeedApp/Backend/API/API.csproj",
       "projectName": "API",
-      "projectPath": "/Users/pete/Desktop/FeedApp/Backend/API/API.csproj",
+      "projectPath": "/Users/pete/Documents/FeedApp/Backend/API/API.csproj",
       "packagesPath": "/Users/pete/.nuget/packages/",
-      "outputPath": "/Users/pete/Desktop/FeedApp/Backend/API/obj/",
+      "outputPath": "/Users/pete/Documents/FeedApp/Backend/API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/pete/.nuget/NuGet/NuGet.Config"
@@ -9410,11 +9466,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/pete/Desktop/FeedApp/Backend/Application/Application.csproj": {
-              "projectPath": "/Users/pete/Desktop/FeedApp/Backend/Application/Application.csproj"
+            "/Users/pete/Documents/FeedApp/Backend/Application/Application.csproj": {
+              "projectPath": "/Users/pete/Documents/FeedApp/Backend/Application/Application.csproj"
             },
-            "/Users/pete/Desktop/FeedApp/Backend/Database/Database.csproj": {
-              "projectPath": "/Users/pete/Desktop/FeedApp/Backend/Database/Database.csproj"
+            "/Users/pete/Documents/FeedApp/Backend/Database/Database.csproj": {
+              "projectPath": "/Users/pete/Documents/FeedApp/Backend/Database/Database.csproj"
             }
           }
         }

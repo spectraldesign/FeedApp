@@ -125,13 +125,23 @@ namespace Application.Repositories
         {
             User currentUser = await _genericExtension.GetCurrentUserAsync();
             var dbPoll = await _context.Polls.Where(x => x.Id == pollId).FirstOrDefaultAsync();
+            dbPoll.Votes = await _context.Votes.Where(x => x.Poll.Id == pollId).ToListAsync();
             if (dbPoll == null) { return -1; }
             var pollCreatorId = await _context.Polls.Where(x => x.Id == pollId).Select(x => x.Creator.Id).FirstOrDefaultAsync();
             if ((pollCreatorId != currentUser.Id) && !currentUser.IsAdmin) { return -2; }
             dbPoll.IsClosed = true;
             var update = _context.Polls.Update(dbPoll);
             var res = await _context.SaveChangesAsync();
-            _rabbitMQClient.PublishClosedPoll(dbPoll);
+
+            PollResult pollResult = new PollResult(
+            );
+            pollResult.Id = dbPoll.Id;
+            pollResult.Question = dbPoll.Question;
+            pollResult.PositiveVotes = dbPoll.Votes.Where(x => x.Positive == true).Count();
+            pollResult.NegativeVotes = dbPoll.Votes.Where(x => x.Positive == false).Count();
+            pollResult.TotalVotes = dbPoll.Votes.Count;
+
+            _rabbitMQClient.PublishClosedPoll(pollResult);
             return res;
         }
     }

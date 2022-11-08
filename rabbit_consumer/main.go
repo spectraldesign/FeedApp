@@ -5,12 +5,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
-
-	"github.com/google/uuid"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -29,7 +26,7 @@ type Vote struct {
 }
 
 type Poll struct {
-	Id        uuid.UUID
+	Id        string
 	Question  string
 	IsPrivate bool
 	IsClosed  bool
@@ -38,10 +35,11 @@ type Poll struct {
 }
 
 type PollResult struct {
-	Id            uuid.UUID
+	Id            string
 	Question      string
 	PositiveVotes int
 	NegativeVotes int
+	TotalVotes    int
 }
 
 func main() {
@@ -67,7 +65,7 @@ func main() {
 	defer ch.Close()
 
 	q, err := ch.QueueDeclare(
-		"Polls", // name
+		"polls", // name
 		false,   // durable
 		false,   // delete when unused
 		false,   // exclusive
@@ -91,23 +89,13 @@ func main() {
 
 	go func() {
 		for d := range msgs {
-			log.Print(d.Body)
-			var jsonString = []byte(d.Body)
-			log.Printf(string(jsonString))
-			var poll Poll
-			json.Unmarshal([]byte(d.Body), &poll)
-			//b, _ := json.Marshal(poll)
 
-			fmt.Print(poll)
-			if poll.IsClosed {
-				log.Printf("Poll %s is closed", poll.Id)
-				log.Printf("saving result to database")
-				log.Printf("push result to Dweet.io")
-				//var url = fmt.Sprintf("https://dweet.io/dweet/for/feed-app-poll-result?pollId=%s&question=%s&positivevotes=%d&negativevotes=%d",
-				//	poll.Id, poll.Question, 0, 0)
-				//log.Printf("Posting poll result to %s", url)
-				//log.Printf("Poll result: %s", poll)
-				//map
+			if d.MessageId == "poll_created" {
+				var poll Poll
+				json.Unmarshal([]byte(d.Body), &poll)
+				log.Printf("Poll %s is created", poll.Id)
+				log.Printf("Push result to Dweet.io")
+
 				responseBody := bytes.NewBuffer(d.Body)
 				resp, err := http.Post("https://dweet.io/dweet/for/feed-app-poll-result", "application/json", responseBody)
 
@@ -115,21 +103,18 @@ func main() {
 					log.Printf("Error posting to Dweet.io: %s", err)
 				}
 				defer resp.Body.Close()
-				fmt.Println("response Status:", resp.Status)
-				fmt.Println("response Headers:", resp.Header)
-				body, _ := ioutil.ReadAll(resp.Body)
-				fmt.Println("response Body:", string(body))
-				//Read the response body
 			} else {
-				log.Printf("Poll %s is open", poll.Id)
-				log.Printf("saving result to MongoDB")
-			}
-			log.Printf("Pushing poll to MongoDB")
-			coll := client.Database("polls").Collection("polls_created")
-			result, err := coll.InsertOne(context.TODO(), poll)
-			fmt.Printf("Inserted document with _id: %v\n", result.InsertedID)
-			if err != nil {
-				log.Fatal(err)
+				var pollResult PollResult
+				json.Unmarshal([]byte(d.Body), &pollResult)
+				log.Printf("Poll %s is closed", pollResult.Id)
+
+				coll := client.Database("polls").Collection("polls_result")
+				result, err := coll.InsertOne(context.TODO(), pollResult)
+				fmt.Printf("Inserted document with _id: %v\n", result.InsertedID)
+
+				if err != nil {
+					log.Fatal(err)
+				}
 			}
 		}
 	}()
