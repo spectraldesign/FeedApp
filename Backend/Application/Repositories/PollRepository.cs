@@ -16,6 +16,7 @@ namespace Application.Repositories
         Task<int> UpdatePollAsync(string Id, UpdatePollDTO updatePollDTO);
         Task<int> DeletePollAsync(string pollId);
         Task<int> ClosePollAsync(string pollId);
+        Task<List<GetPollIdDTO>> GetUserPolls();
 
     }
     public class PollRepository : IPollRepository
@@ -67,6 +68,16 @@ namespace Application.Repositories
                 CountVotes = p.Votes.Count,
                 PositiveVotes = p.Votes.Where(v => v.Positive == true).Count(),
                 NegativeVotes = p.Votes.Where(v => v.Positive == false).Count()
+            }).ToListAsync();
+            return response;
+        }
+
+        public async Task<List<GetPollIdDTO>> GetUserPolls()
+        {
+            var loggedInUser = await _genericExtension.GetCurrentUserAsync();
+            var response = await _context.Polls.Where(x => x.Creator.Id == loggedInUser.Id).Select(p => new GetPollIdDTO()
+            {
+                Id = p.Id
             }).ToListAsync();
             return response;
         }

@@ -4,7 +4,6 @@ using Application.Queries;
 using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
@@ -40,6 +39,17 @@ namespace API.Controllers
         public async Task<ActionResult<Poll>> getPoll(string Id)
         {
             var result = await Mediator.Send(new GetPollQuery(Id));
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Gets all polls for the currently logged in user.
+        /// </summary>
+        /// <returns>List of poll IDs belonging to the currently logged in user</returns>
+        [HttpGet("myPolls")]
+        public async Task<ActionResult<List<GetPollIdDTO>>> getUserPolls()
+        {
+            var result = await Mediator.Send(new GetUserPollsQuery());
             return Ok(result);
         }
 
