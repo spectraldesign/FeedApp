@@ -1,9 +1,7 @@
-using System;
-using System.Text;
 using Domain.Entities;
 using RabbitMQ.Client;
+using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 
 namespace Application.Messaging
@@ -58,7 +56,7 @@ namespace Application.Messaging
 
             _channel.BasicPublish(exchange: "",
                 routingKey: "polls",
-                basicProperties: basicProperties, 
+                basicProperties: basicProperties,
                 body: body);
             Console.WriteLine(" [x] Sent {0}", Convert.ToString(json));
         }

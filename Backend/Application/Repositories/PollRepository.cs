@@ -1,11 +1,11 @@
 ﻿using Application.DTO.PollDTOs;
 using Application.Extentions;
+using Application.Messaging;
 using Domain.Entities;
 using Domain.Interfaces;
 using IdGen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Application.Messaging;
 
 namespace Application.Repositories
 {
@@ -18,6 +18,7 @@ namespace Application.Repositories
         Task<int> DeletePollAsync(string pollId);
         Task<int> ClosePollAsync(string pollId);
         Task<List<GetPollIdDTO>> GetUserPolls();
+        Task<int> CloseExpiredPolls();
 
     }
     public class PollRepository : IPollRepository
@@ -26,16 +27,18 @@ namespace Application.Repositories
         private readonly IFeedAppDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly IdGenerator _idGenerator;
+        protected RabbitMQClient _rabbitMQClient;
 
-        protected RabbitMQClient _rabbitMQClient = new RabbitMQClient();
-        
-        public PollRepository(IGenericExtension genericExtension, IFeedAppDbContext context, IConfiguration configuration, IdGenerator idGenerator)
+        //protected RabbitMQClient _rabbitMQClient = new RabbitMQClient();
+
+        public PollRepository(IGenericExtension genericExtension, IFeedAppDbContext context, IConfiguration configuration, IdGenerator idGenerator, RabbitMQClient rabbitMQClient)
 
         {
             _genericExtension = genericExtension;
             _context = context;
             _configuration = configuration;
             _idGenerator = idGenerator;
+            _rabbitMQClient = rabbitMQClient;
         }
 
         public async Task<GetPollDTO> GetPollById(string id)
@@ -154,6 +157,29 @@ namespace Application.Repositories
 
             _rabbitMQClient.PublishClosedPoll(pollResult);
             return res;
+        }
+
+        public async Task<int> CloseExpiredPolls()
+        {
+            var currentTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Utc);
+            var toBeClosed = await _context.Polls.Where(p => p.EndTime < currentTime && p.IsClosed == false).ToListAsync();
+            foreach (Poll poll in toBeClosed)
+            {
+                poll.Votes = await _context.Votes.Where(x => x.Poll.Id == poll.Id).ToListAsync();
+                poll.IsClosed = true;
+                _context.Polls.Update(poll);
+                PollResult result = new PollResult()
+                {
+                    Id = poll.Id,
+                    Question = poll.Question,
+                    TotalVotes = poll.Votes.Count(),
+                    PositiveVotes = poll.Votes.Where(v => v.Positive == true).Count(),
+                    NegativeVotes = poll.Votes.Where(v => v.Positive == false).Count()
+                };
+                _rabbitMQClient.PublishClosedPoll(result);
+            }
+
+            return await _context.SaveChangesAsync();
         }
     }
 }
