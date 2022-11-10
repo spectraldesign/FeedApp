@@ -8,8 +8,8 @@ import RegisterButton from "../Register/RegisterButton";
 import ProfileButton from "./Profile/profileButton";
 
 function Header() {
-    if (!(localStorage.getItem("Test") === null)) {
-        if (localStorage.getItem("Test") == JSON.stringify(true)) {
+    if (!(localStorage.getItem("loggedIn") === null)) {
+        if (localStorage.getItem("loggedIn") == JSON.stringify(true)) {
             return (
                 <div class="header-bar">
                     <HomeButton />
