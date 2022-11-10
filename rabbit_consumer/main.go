@@ -46,7 +46,7 @@ func main() {
 	// Connect to MongoDB
 	serverAPIOptions := options.ServerAPI(options.ServerAPIVersion1)
 	clientOptions := options.Client().
-		ApplyURI("mongodb+srv://myadmin:Isergodt123@cluster0.psuxl12.mongodb.net/?retryWrites=true&w=majority").
+		ApplyURI(`mongodb+srv://myadmin:Isergodt123@cluster0.psuxl12.mongodb.net/?ssl=true&retryWrites=true&w=majority`).
 		SetServerAPIOptions(serverAPIOptions)
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
@@ -56,7 +56,7 @@ func main() {
 	}
 	defer client.Disconnect(ctx)
 
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	conn, err := amqp.Dial("amqps://rzgnegkz:uHxwhQnXPXWodvQpU6w_1BPKtbBVKb3Z@hawk.rmq.cloudamqp.com/rzgnegkz")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 

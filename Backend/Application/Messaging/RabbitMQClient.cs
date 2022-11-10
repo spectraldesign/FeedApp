@@ -14,11 +14,15 @@ namespace Application.Messaging
         private readonly IConnection _connection;
         private readonly IModel _channel;
 
+        private static readonly string _url = "amqps://rzgnegkz:uHxwhQnXPXWodvQpU6w_1BPKtbBVKb3Z@hawk.rmq.cloudamqp.com/rzgnegkz";
+
         public RabbitMQClient()
         {
-            _factory = new ConnectionFactory() { HostName = "localhost",
-                UserName = "guest",
-                Password = "guest"};
+
+            _factory = new ConnectionFactory()
+            {
+                Uri = new Uri(_url)
+            };
             _connection = _factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.QueueDeclare(queue: "polls",
