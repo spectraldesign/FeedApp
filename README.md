@@ -1,5 +1,6 @@
 # FeedApp
 
+![example workflow](https://github.com/P1T1B0Y98/FeedApp/actions/workflows/dotnet.yml/badge.svg)
 
 ## Using .net backend
 ### Software needed
