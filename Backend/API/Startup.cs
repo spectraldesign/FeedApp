@@ -2,7 +2,6 @@
 using Application;
 using Database;
 using FeedApp.Extensions;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 namespace FeedApp
 {
@@ -69,8 +68,12 @@ namespace FeedApp
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
-            app.UseCors("AllowAll");
-            
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials());
+
             if (env.IsDevelopment()) app.UseCors("AllowAll");
             app.UseAuthorization();
 
