@@ -26,7 +26,6 @@ const Login: Component = () => {
                 if (response.status === 200) {
                     console.log(response);
                     alert('Login successful');
-                    navigate('/');
                     return response.text();
                 } else {
                     alert('Invalid credentials');
@@ -34,10 +33,9 @@ const Login: Component = () => {
             }
         )
             .then(data => {
-                // console.log(data);
                 localStorage.setItem("token", JSON.stringify(data));
                 localStorage.setItem("loggedIn", JSON.stringify(true));
-                // console.log(localStorage);
+                navigate('/');
 
             })
         };

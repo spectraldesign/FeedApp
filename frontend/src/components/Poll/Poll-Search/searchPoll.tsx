@@ -15,8 +15,7 @@ function SearchPoll() {
 
         const data = submit(form);
         e.preventDefault();
-        // fetch('https://localhost:7280/api/poll/{6b26a523-ed73-48a5-acdd-080601b34f69}', {
-        fetch(`https://localhost:7280/api/poll/{${value}}`, {
+        fetch(`https://localhost:7280/api/poll/${value}`, {
                 method: 'GET',
                 mode: 'cors',
                 headers: {
