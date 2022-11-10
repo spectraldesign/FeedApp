@@ -1,4 +1,6 @@
-﻿using Application.Extentions;
+﻿using Application.Cronjobs;
+using Application.Extentions;
+using Application.Messaging;
 using Application.Repositories;
 using Domain.Entities;
 using IdGen.DependencyInjection;
@@ -22,8 +24,9 @@ namespace Application
             services.AddTransient<IIotDeviceRepository, IoTDeviceRepository>();
             services.AddTransient<UserManager<User>>();
             services.AddTransient<IGenericExtension, GenericExtensions>();
-
+            services.AddSingleton<RabbitMQClient>();
             services.AddIdGen(39);
+            services.AddHostedService<ClosePolls>();
 
             return services;
         }
