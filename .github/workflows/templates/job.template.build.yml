@@ -83,3 +83,21 @@ jobs:
     displayName: 'Publish Artifacts'
     inputs:
         ArtifactName: '${{ parameters.artifactName }}'
+        
+  - task: DotNetCoreCLI@2
+      displayName: 'Publish project'
+      inputs:
+        command: publish
+        publishWebProjects: False
+        projects: ${{parameters.projectpath}}
+        arguments: '--configuration $(buildConfiguration)'
+        zipAfterPublish: true
+
+  - task: AzureWebApp@1
+      displayName: "Publish project to app service"
+      inputs:
+        azureSubscription: "Azure for Students(${{secrets.SUBSCRIPTION_ID}})"
+        appType: "webApp"
+        appName: "${{parameters.websiteName}}"
+        package: '**/*.zip'
+        deploymentMethod: "auto"
