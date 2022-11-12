@@ -1,0 +1,98 @@
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.btn {
+    background-color: #42B6F3;
+    color: white;
+    border: none;
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+}
+
+.vote-yes-btn {
+    background-color: #36e223;
+    color: black;
+    border: none;
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+    box-shadow: 0 9px #999;
+    border: none;
+    border-radius: 15px;
+}
+
+.vote-yes-btn:hover {
+    background-color: #1f9013;
+    cursor: pointer;
+}
+
+.vote-yes-btn:active {
+    background-color: #1f9013;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+
+.vote-no-btn {
+    background-color: #e22323;
+    color: black;
+    border: none;
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+    box-shadow: 0 9px #999;
+    border: none;
+    border-radius: 15px;
+}
+
+.vote-no-btn:hover {
+    background-color: #a71c1c;
+    cursor: pointer;
+}
+
+.vote-no-btn:active {
+    background-color: #a71c1c;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.next-poll-btn {
+    background-color: #42B6F3;
+    color: white;
+    border: none;
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+    box-shadow: 0 9px #999;
+    border: none;
+    border-radius: 15px;
+}
+
+.next-poll-btn:hover {
+    background-color: #2b6c93;
+    cursor: pointer;
+}
+
+.next-poll-btn:active {
+    background-color: #2b6c93;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
