@@ -1,7 +1,7 @@
 ﻿using Application.Commands;
 using Application.DTO.IoTDTOs;
+using Application.DTO.PollDTOs;
 using Application.Queries;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -9,7 +9,6 @@ namespace API.Controllers
     /// <summary>
     /// API endpoint for IoT devices
     /// </summary>
-    [Authorize]
     [ApiController]
     [Route("api/IoT")]
     public class IoTDeviceController : BaseApiController
@@ -19,7 +18,6 @@ namespace API.Controllers
         /// </summary>
         /// <returns>Json object with list of IoT Guids</returns>
         /// <response code="200">Json of form [{deviceID: id}, ...]</response>
-        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<List<CreateIoTDTO>>> getAllIoTDevices()
         {
@@ -34,7 +32,6 @@ namespace API.Controllers
         /// <returns>Json object with IoT Guid</returns>
         /// <response code="200">Json of form {DeviceID: id, DeviceName: name, PollQueue: [pollIDs]}</response>
         /// /// <response code="404">IoT device with id not found.</response>
-        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<GetIoTWithQueueDTO>> getIoTDevice(Guid id)
         {
@@ -73,22 +70,22 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Serve a poll to an IoT device
+        /// Serve a public poll to an IoT device
         /// </summary>
-        /// <param name="id">Guid of IoT device</param>
+        /// <param name="IoTId">Guid of IoT device</param>
         /// <param name="pollId">String id of poll</param>
         /// <returns></returns>
         /// <response code="200">Poll served to IoT device</response>
         /// <response code="400">Bad Request</response>
-        [HttpPost("{id}")]
-        public async Task<ActionResult<int>> servePoll(Guid id, [FromBody] string pollId)
+        [HttpPost("{IoTId}/{pollId}")]
+        public async Task<ActionResult<int>> servePoll(Guid IoTId, string pollId)
         {
-            var result = await Mediator.Send(new ServePollCommand(id, pollId));
+            var result = await Mediator.Send(new ServePollCommand(IoTId, pollId));
             if (result == -1)
             {
                 return Problem(
                     title: "IoT device not found.",
-                    detail: $"IoT device with id {id} not found.",
+                    detail: $"IoT device with id {IoTId} not found.",
                     statusCode: StatusCodes.Status400BadRequest
                     );
             }
@@ -100,7 +97,45 @@ namespace API.Controllers
                     statusCode: StatusCodes.Status400BadRequest
                     );
             }
-            return Ok($"Poll with id {pollId} successfully served to IoT device with id {id}");
+            if (result == -3)
+            {
+                return Problem(
+                    title: "Cannot serve private polls to IoT devices currently.",
+                    detail: $"Poll with id {pollId} could not be served.",
+                    statusCode: StatusCodes.Status400BadRequest
+                    );
+            }
+            if (result == -4)
+            {
+                return Problem(
+                    title: "Cannot serve closed polls.",
+                    detail: $"Poll with id {pollId} has already closed.",
+                    statusCode: StatusCodes.Status400BadRequest
+                    );
+            }
+            return Ok($"Poll with id {pollId} successfully served to IoT device with id {IoTId}");
+        }
+
+        /// <summary>
+        /// Gets all polls that has been served to an IoTDevice
+        /// </summary>
+        /// <param name="id">IoT device Guid to get polls for</param>
+        /// <returns>List of polls, each with fields {Id, Question, IsPrivate, IsClosed, EndTime, CreatorId, CreatorName, CountVotes}</returns>
+        /// <response code="200">Poll served to IoT device</response>
+        /// <response code="400">Bad Request</response>
+        [HttpGet("servedPolls/{id}")]
+        public async Task<ActionResult<List<GetPollDTO>>> getServedPolls(Guid id)
+        {
+            var result = await Mediator.Send(new GetServedPollQuery(id));
+            if (result == null)
+            {
+                return Problem(
+                    title: "IoT device not found.",
+                    detail: $"IoT device with id {id} not found.",
+                    statusCode: StatusCodes.Status400BadRequest
+                    );
+            }
+            return Ok(result);
         }
     }
 }

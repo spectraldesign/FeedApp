@@ -1,9 +1,8 @@
 ﻿using Application.DTO.IoTDTOs;
-using Application.Extentions;
+using Application.DTO.PollDTOs;
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Application.Repositories
 {
@@ -13,18 +12,15 @@ namespace Application.Repositories
         Task<List<CreateIoTDTO>> GetIoTDevices();
         Task<int> RegisterIoTDevice(CreateIoTDTO createIoTDTO);
         Task<int> ServePoll(Guid ioTId, string pollId);
+        Task<List<GetPollDTO>> GetServedPolls(Guid ioTId);
     }
     public class IoTDeviceRepository : IIotDeviceRepository
     {
-        private readonly IGenericExtension _genericExtension;
         private readonly IFeedAppDbContext _context;
-        private readonly IConfiguration _configuration;
 
-        public IoTDeviceRepository(IGenericExtension genericExtension, IFeedAppDbContext context, IConfiguration configuration)
+        public IoTDeviceRepository(IFeedAppDbContext context)
         {
-            _genericExtension = genericExtension;
             _context = context;
-            _configuration = configuration;
         }
 
         public async Task<GetIoTWithQueueDTO> GetIoTDeviceById(Guid id)
@@ -61,10 +57,32 @@ namespace Application.Repositories
             if (dbIoT == null) { return -1; }
             var dbPoll = await _context.Polls.Where(x => x.Id == pollId).FirstOrDefaultAsync();
             if (dbPoll == null) { return -2; }
+            if (dbPoll.IsPrivate) { return -3; }
+            if (dbPoll.IsClosed) { return -4; }
             if (dbIoT.PollQueue == null) { dbIoT.PollQueue = new List<Poll>(); }
             dbIoT.PollQueue.Add(dbPoll);
             var update = _context.IoTDevices.Update(dbIoT);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<GetPollDTO>> GetServedPolls(Guid ioTId)
+        {
+            var polls = await _context.IoTDevices
+                .Where(i => i.Id == ioTId)
+                .Select(i => i.PollQueue.Select(p => new GetPollDTO()
+                {
+                    Id = p.Id,
+                    Question = p.Question,
+                    IsPrivate = p.IsPrivate,
+                    IsClosed = p.IsClosed,
+                    EndTime = p.EndTime,
+                    CreatorId = p.Creator.Id,
+                    CreatorName = p.Creator.UserName,
+                    CountVotes = p.Votes.Count,
+                    PositiveVotes = p.Votes.Where(v => v.Positive == true).Count(),
+                    NegativeVotes = p.Votes.Where(v => v.Positive == false).Count()
+                })).FirstOrDefaultAsync();
+            return (List<GetPollDTO>)polls;
         }
     }
 }
