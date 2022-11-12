@@ -6,7 +6,7 @@ import CreatePoll from '../components/Poll/Poll-Creation/createPoll';
 const CreatePollPage: Component = () => {
     return (
         <div>
-            <HeaderLoggedIn />
+            <Header />
             <CreatePoll />
         </div>
     )
