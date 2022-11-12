@@ -28,10 +28,9 @@
 
 .poll-create-input{
     height: 60px;
-    width: 60%;
+    width: 50%;
     display: block;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 25%;
     margin-bottom: 30px;
 }
 
@@ -43,4 +42,19 @@
 
 h2 {
     font-size: 60px;
+}
+
+.privacy {
+    margin-bottom: 30px;
+}
+
+label {
+    display: inline-flex;
+}
+
+#privacy-check {
+    height: 50px;
+    width: 50px;
+    background-color: #eee;
+    margin-left: 20px;
 }
