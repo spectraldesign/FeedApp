@@ -6,7 +6,7 @@ import axios from 'axios';
 const VoteNoButton: Component = () => {
     const voteNo = async () => {
         console.log("Poll sin id", poll_id());
-        const res = await axios.post(`https://localhost:7280/api/vote/${poll_id()}`, {
+        const res = await axios.post(`${import.meta.env.VITE_BASE_URL}vote/${poll_id()}`, {
             "isPositive": false
         }) 
     }

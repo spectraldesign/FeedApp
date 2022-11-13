@@ -11,10 +11,10 @@ const Poll:Component = () => {
             <div class="container">
             <div class="poll">
                 <div class="poll-form">
-                    <h1 class='text-center'> IoT Device ID: {iot_device()["deviceID"]} </h1>
-                    <h1 class='text-center'> IoT Device Name: {iot_device()["deviceName"]} </h1>
+                    <h1 class='device-id'><b>IoT Device ID:</b> {iot_device()["deviceID"]} </h1>
+                    <h1 class='device-name'><b>IoT Device Name:</b> {iot_device()["deviceName"]} </h1>
                     <p class='poll-text'> Question: </p>
-                    <p class='poll-text'> {onePoll()["question"]} </p>
+                    <p class='poll-question'> {onePoll()["question"]} </p>
                     <Buttons />
                 </div>
             </div>
@@ -36,4 +36,3 @@ const Poll:Component = () => {
 }
 
 export default Poll;
-

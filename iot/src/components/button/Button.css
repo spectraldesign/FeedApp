@@ -1,10 +1,11 @@
 .buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
+    color: pink;
 }
 .btn {
     background-color: #42B6F3;
@@ -16,83 +17,77 @@
     font-size: 25px;
     margin: 4px 2px;
     border-radius: 12px;
+    box-shadow: 0 7px #15171a;
 }
 
 .vote-yes-btn {
-    background-color: #36e223;
-    color: black;
+    background-color: #24961a;
     border: none;
-    padding: 15px 70px 15px 70px;
+    padding: 180px;
     text-align: center;
     text-decoration: none;
-    font-size: 25px;
-    margin: 4px 2px;
+    font-size: 50px;
+    margin: 4px 10px;
     border-radius: 12px;
-    box-shadow: 0 9px #999;
+    box-shadow: 0 7px #15171a;
     border: none;
     border-radius: 15px;
 }
 
 .vote-yes-btn:hover {
-    background-color: #1f9013;
+    background-color: #1f8a11;
     cursor: pointer;
 }
 
 .vote-yes-btn:active {
-    background-color: #1f9013;
-    box-shadow: 0 5px #666;
+    background-color: #107a10;
     transform: translateY(4px);
 }
 
 
 .vote-no-btn {
-    background-color: #e22323;
-    color: black;
+    background-color: #961a1a;
     border: none;
-    padding: 15px 70px 15px 70px;
+    padding: 180px;
     text-align: center;
     text-decoration: none;
-    font-size: 25px;
-    margin: 4px 2px;
+    font-size: 50px;
+    margin: 4px 10px;
     border-radius: 12px;
-    box-shadow: 0 9px #999;
     border: none;
     border-radius: 15px;
 }
 
 .vote-no-btn:hover {
-    background-color: #a71c1c;
+    background-color: #8a1111;
     cursor: pointer;
 }
 
 .vote-no-btn:active {
-    background-color: #a71c1c;
-    box-shadow: 0 5px #666;
+    background-color: #7a1010;
     transform: translateY(4px);
 }
 
 .next-poll-btn {
-    background-color: #42B6F3;
+    background-color: #5e5e5e;
     color: white;
     border: none;
     padding: 15px 70px 15px 70px;
     text-align: center;
     text-decoration: none;
     font-size: 25px;
-    margin: 4px 2px;
+    margin: 20px 0px;
     border-radius: 12px;
-    box-shadow: 0 9px #999;
     border: none;
     border-radius: 15px;
 }
 
 .next-poll-btn:hover {
-    background-color: #2b6c93;
+    background-color: #575757;
     cursor: pointer;
 }
 
 .next-poll-btn:active {
     background-color: #2b6c93;
-    box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
