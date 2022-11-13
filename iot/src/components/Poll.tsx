@@ -4,7 +4,7 @@ import { onePoll, iot_device } from '../routes/Votescreen';
 import NextPollButton from './button/NextPollButton';
 import { Component } from 'solid-js';
 
-const Poll:Component = () => {
+function Poll() {
 
     if (onePoll() !== undefined) {
         return (

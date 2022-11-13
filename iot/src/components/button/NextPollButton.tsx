@@ -9,7 +9,10 @@ const NextPollButton: Component = () => {
     const navigate = useNavigate();
     async function onClick(){
         if(count() >= poll().length-1){
-            //todo make it display the could not find more polls message.
+            
+            setCount(0);
+            alert("Could not find more polls, redirecting to home screen");
+            navigate('/');
             return console.log('No more polls :)')
         }
         setCount(count() + 1);
