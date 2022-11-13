@@ -38,9 +38,21 @@ function SearchPoll() {
             }
         })
         .then(data => {
-            console.log(data);
-            console.log("ID: " + data["id"]);
-            navigate('/polls/:id');
+            if (data["isClosed"]) {
+                alert("The poll is closed");
+            }
+            else {
+                if (data["isPrivate"] && localStorage.getItem("loggedIn")) {
+                    navigate('/polls/:id');
+                }
+                else if (data["isPrivate"] && !(localStorage.getItem("loggedIn"))) {
+                    alert("The poll is private and you will need to login");
+                    navigate('/login');
+                }
+                else {
+                    navigate('/polls/:id');
+                }
+            }
         })
     };
 
