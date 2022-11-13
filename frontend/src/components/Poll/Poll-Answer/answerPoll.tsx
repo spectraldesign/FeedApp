@@ -38,24 +38,30 @@ function AnswerPoll() {
         console.log(data);
         alert(data);
         e.preventDefault();
-        fetch(`https://localhost:7280/vote/poll/${pollId()}`, {
+        fetch(`https://localhost:7280/api/vote/${pollId()}`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + authentic
                 },
                 body: JSON.stringify(data)
             })
             .then(response => {
                 if (response.status === 201) {
                     console.log(response);
-                    alert('Login successful');
+                    alert('Vote successful');
                     navigate('/poll/results')
                     return response.text();
-                } else {
-                    alert('Invalid credentials');
+                } 
+                else if (response.status === 403){
                     console.log(response);
+                    alert("Cannot vote on same poll twice");
+                }
+                else {
+                    console.log(response);
+                    alert('Invalid vote');
                 }
             }
         )
