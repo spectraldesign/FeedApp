@@ -5,8 +5,7 @@ import NextPollButton from './button/NextPollButton';
 import { Component } from 'solid-js';
 
 function Poll() {
-
-    if (onePoll() !== undefined) {
+    if (onePoll() !== '' && onePoll() !== undefined) {
         return (
             <div class="container">
             <div class="poll">
@@ -26,8 +25,9 @@ function Poll() {
         <div class="container">
             <div class="poll">
                 <div class="poll-form">
+                <h1 class='device-id'><b>IoT Device ID:</b> {iot_device()["deviceID"]} </h1>
                     <h1 class='text-center'> IoT Device: {iot_device()["deviceName"]} </h1>
-                    <p class='poll-text'> Could not find more polls </p>
+                    <p class='poll-text'> Could not find any polls for this device. </p>
                 </div>
             </div>
         </div>

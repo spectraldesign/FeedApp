@@ -10,15 +10,15 @@ function SearchIoTDevice (){
     const navigate = useNavigate();
     const handleChange = (e: any) => {
         setId(e.target.value);
-        console.log("hello you", id());
     }
 
     const handleSubmit = async () => {
+            setPoll('');
+            setOnePoll('');
             const res = await axios.get(`${import.meta.env.VITE_BASE_URL}IoT/${id()}`).catch(err => err);
             if(!res || !res.status){ return 400 }
             const data = await res.data;
             setIot_device(data);
-            navigate('/id');
             return 200
     }
 
@@ -42,11 +42,13 @@ function SearchIoTDevice (){
             return navigate('');
         }
         const res2 = await getPolls();
-        if(res2 != 200){
-            alert('An error occurred when fetching polls. Please try again.')
+        if (res2 != 200){
+            alert('An error ocurred while fetching polls. Please try again.')
             return navigate('')
         }
-        navigate('/id');
+        if (res == 200 && res2 == 200){
+            return navigate('/id');
+        }
     }
 
     return (
