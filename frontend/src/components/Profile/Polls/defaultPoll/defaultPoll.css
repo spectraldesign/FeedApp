@@ -4,6 +4,12 @@
     margin-top: 100px;
 }
 
+.default-poll {
+    text-align: center;
+    display: block;
+    margin-top: 50px;
+}
+
 .poll-answer-form {
     width: 100%;
 }
@@ -82,4 +88,28 @@ left: 80%;
     position: absolute;
  
 
+}
+
+.close-poll-btn {
+    background-color: #42B6F3;
+    color: white;
+    border: none;
+    /* padding: 20px; */
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+}
+
+.close-poll-btn:hover {
+    background-color: #0b3148;
+}
+
+.container-result {
+    background-color: black;
+    width: 100%;
+    border-radius: 12px;
 }

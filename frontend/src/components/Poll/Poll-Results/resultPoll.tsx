@@ -20,11 +20,11 @@ function ResultPoll() {
                     <div class ="all-elements">
                     <h3 class="poll-question">{polls_Obj.Question}</h3>
 
-                    <div class="container">
+                    <div class="container-result">
                     <div class="result yes" data-width={(votes_Obj.yes_votes)/(votes_Obj.total_votes)*100}> {(votes_Obj.yes_votes)/(votes_Obj.total_votes)*100}%</div>
                     </div>
   
-                    <div class="container" >
+                    <div class="container-result" >
                     <div class="result no" data-width={(votes_Obj.no_votes)/(votes_Obj.total_votes)*100}>{(votes_Obj.no_votes)/(votes_Obj.total_votes)*100}%</div> 
                     </div>
                     
