@@ -13,6 +13,7 @@ namespace Application.Repositories
         Task<int> RegisterIoTDevice(CreateIoTDTO createIoTDTO);
         Task<int> ServePoll(Guid ioTId, string pollId);
         Task<List<GetPollDTO>> GetServedPolls(Guid ioTId);
+        Task<int> RemoveServedPoll(Guid ioTId, string pollId);
     }
     public class IoTDeviceRepository : IIotDeviceRepository
     {
@@ -83,6 +84,19 @@ namespace Application.Repositories
                     NegativeVotes = p.Votes.Where(v => v.Positive == false).Count()
                 })).FirstOrDefaultAsync();
             return (List<GetPollDTO>)polls;
+        }
+
+        public async Task<int> RemoveServedPoll(Guid ioTId, string pollId)
+        {
+            var dbIot = await _context.IoTDevices.Where(i => i.Id == ioTId).FirstOrDefaultAsync();
+            if (dbIot == null) { return -1; }
+            var dbPollQueue = await _context.IoTDevices.Where(i => i.Id == ioTId).Select(x => x.PollQueue).FirstOrDefaultAsync();
+            var pollExists = dbPollQueue.Find(x => x.Id == pollId);
+            if (pollExists == null) { return -2; }
+            dbPollQueue.RemoveAll(x => x.Id == pollId);
+            dbIot.PollQueue = dbPollQueue;
+            _context.IoTDevices.Update(dbIot);
+            return await _context.SaveChangesAsync();
         }
     }
 }

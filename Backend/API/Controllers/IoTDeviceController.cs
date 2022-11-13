@@ -137,5 +137,28 @@ namespace API.Controllers
             }
             return Ok(result);
         }
+
+        [HttpPost("servedPolls/{IoTId}/{pollId}")]
+        public async Task<ActionResult<int>> removeServedPollByPollId(Guid IoTId, string pollId)
+        {
+            var result = await Mediator.Send(new RemoveServedPollCommand(IoTId, pollId));
+            if (result == -1)
+            {
+                return Problem(
+                    title: "IoT device not found.",
+                    detail: $"IoT device with id {IoTId} not found.",
+                    statusCode: StatusCodes.Status400BadRequest
+                    );
+            }
+            if (result == -2)
+            {
+                return Problem(
+                    title: "Poll id not found in queue for IoT device.",
+                    detail: $"Poll id with id {pollId} was not served to IoT device with id {IoTId}.",
+                    statusCode: StatusCodes.Status400BadRequest
+                    );
+            }
+            return Ok(result);
+        }
     }
 }

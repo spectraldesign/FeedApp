@@ -25,3 +25,4 @@ const NextPollButton: Component = () => {
     )
 };   
 export default NextPollButton;
+export {count, setCount}

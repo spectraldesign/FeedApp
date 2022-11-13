@@ -144,8 +144,19 @@ namespace Application.Repositories
             var pollCreatorId = await _context.Polls.Where(x => x.Id == pollId).Select(x => x.Creator.Id).FirstOrDefaultAsync();
             if ((pollCreatorId != currentUser.Id) && !currentUser.IsAdmin) { return -2; }
             dbPoll.IsClosed = true;
-            var update = _context.Polls.Update(dbPoll);
+            _context.Polls.Update(dbPoll);
+
+            //Remove from IoTDevice queues
+            var IoTQueue = await _context.IoTDevices.Where(x => x.PollQueue.Any(y => y.Id == pollId)).ToListAsync();
+            foreach (IoTDevice device in IoTQueue)
+            {
+                var deviceQueue = await _context.IoTDevices.Where(x => x.Id == device.Id).Select(i => i.PollQueue).FirstOrDefaultAsync();
+                deviceQueue.RemoveAll(x => x.Id == pollId);
+                device.PollQueue = deviceQueue;
+                _context.IoTDevices.Update(device);
+            }
             var res = await _context.SaveChangesAsync();
+
 
             PollResult pollResult = new PollResult(
             );
@@ -168,6 +179,17 @@ namespace Application.Repositories
                 poll.Votes = await _context.Votes.Where(x => x.Poll.Id == poll.Id).ToListAsync();
                 poll.IsClosed = true;
                 _context.Polls.Update(poll);
+
+                //Remove from IoTDevice queues
+                var IoTQueue = await _context.IoTDevices.Where(x => x.PollQueue.Any(y => y.Id == poll.Id)).ToListAsync();
+                foreach (IoTDevice device in IoTQueue)
+                {
+                    var deviceQueue = await _context.IoTDevices.Where(x => x.Id == device.Id).Select(i => i.PollQueue).FirstOrDefaultAsync();
+                    deviceQueue.RemoveAll(x => x.Id == poll.Id);
+                    device.PollQueue = deviceQueue;
+                    _context.IoTDevices.Update(device);
+                }
+
                 PollResult result = new PollResult()
                 {
                     Id = poll.Id,

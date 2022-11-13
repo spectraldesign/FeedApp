@@ -26,6 +26,9 @@ function SearchIoTDevice (){
         const res = await axios.get(`${import.meta.env.VITE_BASE_URL}IoT/servedPolls/${id()}`).catch(err => err);
         if(!res || !res.status){return 400}
         const data = await res.data;
+        if(data.length == 0){
+            return 200
+        }
         setPoll(data);
         setOnePoll(poll()[0]);
         setPoll_id(onePoll()["id"]);
