@@ -1,13 +1,17 @@
-import { createSignal, createEffect, createMemo } from "solid-js";
-// import { css } from 'emotion';
 import "./SearchPoll.css";
 import { loginForm } from '../../Login/LoginForm';
 import { useNavigate, NavLink } from '@solidjs/router';
+import { pollId, setPollId } from "../Poll-Answer/answerPoll";
 
 function SearchPoll() {
 
     const { form, updateFormField, submit, clearField } = loginForm();
     const navigate = useNavigate();
+
+    const handleChange = (e: any) => {
+        setPollId(e.target.value);
+        console.log("hello you", pollId());
+    }
 
     const handleSubmit = (e: Event) => {
         const input = document.getElementById('fname') as HTMLInputElement | null;
@@ -44,13 +48,12 @@ function SearchPoll() {
         <div class="trial">
             <div class="poll-search">
                 <form class="poll-search-form" action="" onSubmit={handleSubmit}>
-                    <input class="poll-search-input" type="text" id="fname" name="firstname" placeholder="&#128269; Enter Poll ID"></input>
+                    <input class="poll-search-input" type="text" id="fname" name="firstname" onChange={handleChange} placeholder="&#128269; Enter Poll ID"></input>
                     <input class="submit-poll-btn" type="submit" value="Enter"></input>
                 </form>
             </div>
         </div>
     );
   }
-
   export default SearchPoll;
 

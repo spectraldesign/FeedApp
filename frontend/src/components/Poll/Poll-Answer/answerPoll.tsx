@@ -1,47 +1,98 @@
 import "./answerPoll.css";
-import { SiJavascript } from "solid-icons/si";
-import { Icon } from "solid-heroicons";
+import { useNavigate } from "@solidjs/router";
+import { createSignal } from "solid-js";
+import { answerForm } from "./answerPollForm";
 
-
-
-const polls_JSON = '{"Id":"0c761621-7c3e-4b4f-90ae-028cadf0a817", "Question": "Is this a poll?", "IsPrivate":true, "IsClosed":false, "EndTime":"2022-11-04 18:37:26.997+00", "CreatorId":"cd12d700-030a-4ef7-a836-e8e99d28a00d"}';
-const polls_Obj = JSON.parse(polls_JSON);
-
-const votes_JSON = '{"Id":"0c761621-7c3e-4b4f-90ae-028cadf0a817", "total_votes":"500", "yes_votes":"190", "no_votes":"310"}';
-const votes_Obj = JSON.parse(votes_JSON);
+const [pollId, setPollId] = createSignal('');
 
 function AnswerPoll() {
+    const { form, updateFormField, submit, clearField } = answerForm();
+    const navigate = useNavigate();
+
+    const [poll, setPoll] = createSignal({});
+    const token = localStorage.getItem("token");
+    var authentic = token?.substring(1, token.length-1);
+
+    fetch(`https://localhost:7280/api/poll/${pollId()}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+        })
+        .then(response => {
+            if (response.status === 200) {
+                console.log(response);
+                return response.json();
+            } else {
+                alert('Invalid fetch');
+            }
+        })
+        .then(data => {
+            setPoll(data);
+        })
+
+    const handleSubmit = (e: Event) => {
+        const data = submit(form);
+        console.log(data);
+        alert(data);
+        e.preventDefault();
+        fetch(`https://localhost:7280/vote/poll/${pollId()}`, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.status === 201) {
+                    console.log(response);
+                    alert('Login successful');
+                    navigate('/poll/results')
+                    return response.text();
+                } else {
+                    alert('Invalid credentials');
+                    console.log(response);
+                }
+            }
+        )
+        
+    }
+
     return (
         
         <div class="trial">
             <div class="poll-answer">
-                <form class="poll-answer-form" action="">
+                <form class="poll-answer-form" action="" onSubmit={handleSubmit}>
                     <div class ="all-elements">
-                    <h3 class="poll-question">{polls_Obj.Question}</h3>
-
-                    
+                    <h1 class="poll-question">{poll()['question']}</h1>                    
                     <div class="radio-buttons">
-                        <input  name="radio" type="radio" id="answer-yes"  value="Yes" ></input>
-                        <label for="answer-yes">Yes</label>
-
-
-                        <input name="radio" type="radio" id="answer-no" value="No"></input>
-                        <label for="answer-no">No</label>
-                        </div>
-                        
-
-
-
-                    <div class="text-and-button">
-                        <p id="text"> {votes_Obj.total_votes} overall votes  |  Poll closes at {polls_Obj.EndTime} </p>
+                        <input 
+                            type="radio" 
+                            name="isPositive" 
+                            id="positive"
+                            value="true"
+                            onChange={updateFormField('isPositive')}/>
+                        <label for="positive">Yes</label>
+                        <input 
+                            type="radio" 
+                            name="isPositive" 
+                            id="negative"
+                            value="false"
+                            onChange={updateFormField('isPositive')}/>
+                        <label for="negative">No</label>
+                        <p id="text"> {poll()['positiveVotes'] + poll()['negativeVotes']} overall votes  |  Poll closes at {poll()['endTime']} </p>
                         <input class="submit-answer-btn"  type="submit" value="Vote"></input>
+                        </div>
                     </div>
-                    </div>
-
                 </form>
             </div>
         </div>
     );
 }
 
+export { pollId, setPollId };
 export default AnswerPoll;

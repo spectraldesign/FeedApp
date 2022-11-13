@@ -1,14 +1,14 @@
 import { Component } from 'solid-js';
 import Header from '../components/Header/header';
-import AnswerPoll from '../components/Poll/Poll-Answer/answerPoll';
+import ResultPoll from '../components/Poll/Poll-Results/resultPoll';
 
-const VotePage: Component = () => {
+const ResultPage: Component = () => {
     return (
         <div>
             <Header />
-            <AnswerPoll />
+            <ResultPoll />
         </div>
     )
 }
 
-export default VotePage;
+export default ResultPage;

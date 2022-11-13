@@ -7,6 +7,7 @@ import RegisterPage from './Pages/RegisterPage';
 import ProfilePage from './Pages/ProfilePage';
 import VotePage from './Pages/VotePage';
 import CreatePollPage from './Pages/CreatePollPage';
+import ResultPage from './Pages/ResultPage';
 
 
 const App: Component = () => {
@@ -20,6 +21,7 @@ const App: Component = () => {
         <Route path="/polls/:id" element={<VotePage />} />
         <Route path="/profile/polls" element={<MyPollsPage />} />
         <Route path="/poll/create" element={<CreatePollPage />} />
+        <Route path="/poll/results" element={<ResultPage />} />
       </Routes>
     </>
   );

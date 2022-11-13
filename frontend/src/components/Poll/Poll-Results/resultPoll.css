@@ -19,11 +19,10 @@
 
 }
 
-.container {
+.container-result {
     background-color: black;
     width: 100%;
-        border-radius: 12px;
-
+    border-radius: 12px;
 }
 
 .result {
