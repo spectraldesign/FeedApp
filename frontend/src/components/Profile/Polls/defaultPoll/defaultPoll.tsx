@@ -38,8 +38,14 @@ export default function DefaultPoll(props: any) {
             setPositiveVotes(data['positiveVotes']);
             setNegativeVotes(data['negativeVotes']);
             setCountVotes(positiveVotes() + negativeVotes());
-            setPositivePercent(positiveVotes()/countVotes()*100);
-            setNegativePercent(negativeVotes()/countVotes()*100);
+            if (countVotes() == 0) {
+                setPositivePercent(0);
+                setNegativePercent(0);
+            }
+            else {
+                setPositivePercent(positiveVotes()/countVotes()*100);
+                setNegativePercent(negativeVotes()/countVotes()*100);
+            }
         })
 
     const handleSubmit = () => {
