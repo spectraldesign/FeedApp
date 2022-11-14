@@ -2,38 +2,39 @@ import "./answerPoll.css";
 import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import { answerForm } from "./answerPollForm";
-import { resultPollId, setResultPollId } from "../Poll-Results/resultPoll";
+import { poll, setPoll, pollId, setPollId} from "../Poll-Search/searchPoll"; 
 
-const [pollId, setPollId] = createSignal('');
+const [resultPollId, setResultPollId] = createSignal('');
+const [resultPoll, setResultPoll] = createSignal('');
+
 
 function AnswerPoll() {
     const { form, updateFormField, submit, clearField } = answerForm();
     const navigate = useNavigate();
 
-    const [poll, setPoll] = createSignal({});
     const token = localStorage.getItem("token");
     var authentic = token?.substring(1, token.length-1);
 
-    fetch(`https://localhost:7280/api/poll/${pollId()}`, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-        })
-        .then(response => {
-            if (response.status === 200) {
-                console.log(response);
-                return response.json();
-            } else {
-                alert('Invalid fetch');
-            }
-        })
-        .then(data => {
-            setPoll(data);
-            setResultPollId(pollId());
-        })
+    // fetch(`https://localhost:7280/api/poll/${pollId()}`, {
+    //         method: 'GET',
+    //         mode: 'cors',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Access-Control-Allow-Origin': '*'
+    //         },
+    //     })
+    //     .then(response => {
+    //         if (response.status === 200) {
+    //             console.log(response);
+    //             return response.json();
+    //         } else {
+    //             alert('Invalid fetch');
+    //         }
+    //     })
+    //     .then(data => {
+    //         setPoll(data);
+    //         setResultPollId(pollId());
+    //     })
 
     const handleSubmit = (e: Event) => {
         const data = submit(form);
@@ -51,6 +52,8 @@ function AnswerPoll() {
             .then(response => {
                 if (response.status === 201) {
                     console.log(response);
+                    setResultPollId(pollId());
+                    setResultPoll(poll());
                     alert('Vote successful');
                     navigate('/poll/results')
                     return response.text();
@@ -100,5 +103,5 @@ function AnswerPoll() {
     );
 }
 
-export { pollId, setPollId };
+export {resultPollId, setResultPollId, resultPoll, setResultPoll};
 export default AnswerPoll;

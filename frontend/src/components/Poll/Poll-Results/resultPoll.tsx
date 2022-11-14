@@ -1,22 +1,23 @@
 import "./resultPoll.css";
 import { createSignal } from "solid-js";
-
-const [resultPollId, setResultPollId] = createSignal('');
+import { resultPollId, setResultPollId, resultPoll, setResultPoll } from "../Poll-Answer/answerPoll";
 
 function ResultPoll() {
-    const [question, setQuestion] = createSignal('');
-    const [endTime, setEndTime] = createSignal('');
-    const [countVotes, setCountVotes] = createSignal(0);
-    const [positiveVotes, setPositiveVotes] = createSignal(0);
-    const [negativeVotes, setNegativeVotes] = createSignal(0);
-    const [positivePercent, setPositivePercent] = createSignal(0);
-    const [negativePercent, setNegativePercent] = createSignal(0);
-
+    const countVotes = resultPoll()["countVotes"] + 1;
+    const positiveVotes = resultPoll()["positiveVotes"];
+    const negativeVotes = resultPoll()["negativeVotes"];
+    const positivePercent = Math.round((parseInt(positiveVotes, 10) / parseInt(countVotes, 10) * 100));
+    const negativePercent = Math.round((parseInt(negativeVotes, 10) / parseInt(countVotes, 10) * 100));
+    const endTime = resultPoll()["endTime"];
     const token = localStorage.getItem("token");
     var authentic = token?.substring(1, token.length-1);
+    console.log(positiveVotes);
+    console.log(negativeVotes);
+    console.log(countVotes);
+    console.log("result Poll", resultPoll()["question"]);
 
     console.log("test: " + resultPollId());
-    fetch(`https://localhost:7280/api/poll/${resultPollId()}`, {
+  /*   fetch(`https://localhost:7280/api/poll/${resultPollId()}`, {
     // fetch(`https://localhost:7280/api/poll/1039516104483041280`, {
         method: 'GET',
         mode: 'cors',
@@ -46,7 +47,7 @@ function ResultPoll() {
         // setPoll(data);
         // setIsClosed(data['isClosed']);
 
-    })
+    }) */
 
     return (
         
@@ -54,20 +55,20 @@ function ResultPoll() {
             <div class="poll-result">
                 <form class="poll-result-form" action="">
                     <div class ="all-elements">
-                    <h1 class="poll-question">{question}</h1>
+                    <h1 class="poll-question">{resultPoll()["question"]}</h1>
                     <div class="container-result">
                         <div class="result-yes" style={{
-                            width: `${positivePercent().toFixed()}%`
-                        }}> Yes: {positivePercent().toFixed()}%</div>
+                            width: `${positivePercent.toFixed()}%`
+                        }}> Yes: {positivePercent.toFixed()}%</div>
                     </div>
                     <div class="container-result" >
                         <div class="result-no" style={{
-                            width: `${negativePercent().toFixed()}%`
-                        }}>No: {negativePercent().toFixed()}%</div> 
+                            width: `${negativePercent.toFixed()}%`
+                        }}>No: {negativePercent.toFixed()}%</div> 
                     </div>
                                       
                     <div class="text-and-button2">
-                        <p id="text"> {countVotes()} overall votes  |  Poll closes at {endTime()} </p>
+                        <p id="text"> {countVotes} overall votes  |  Poll closes at {endTime} </p>
                     </div>                    
                 </div>
                 
@@ -76,5 +77,4 @@ function ResultPoll() {
         </div>
     );
 }
-export {resultPollId, setResultPollId};
 export default ResultPoll;

@@ -31,11 +31,6 @@ const Register: Component = () => {
                 }
             }
         )
-            .then(data => {
-                console.log(data?.body);
-                console.log(localStorage);
-
-            })
         };
     
 
@@ -69,7 +64,7 @@ const Register: Component = () => {
                     />
                 </div>
                 <div class="form-group">
-                    <label class="label" for="email">Email:</label>
+                    <label class="email-text" for="email">Email:</label>
                     <input 
                         type="text" 
                         class="form-control" 

@@ -59,7 +59,7 @@ const Login: Component = () => {
                     />
                 </div>
                 <div class="form-group">
-                    <label class="label" for="password">Password:</label>
+                    <label class="label password-label" for="password">Password:</label>
                     <input 
                         type="password" 
                         class="form-control" 

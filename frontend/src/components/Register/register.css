@@ -74,6 +74,11 @@
     height: 40px;
     margin-left: 15px;
     font-size: 18px;
+    position: relative;
+}
+
+.email-text {
+  padding-left: 53px;
 }
 
     

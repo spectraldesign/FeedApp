@@ -83,6 +83,7 @@ namespace Application.Repositories
                 if (user == null) { return -1; }
                 vote.User = user;
                 var PollHasVoteByUser = await _context.Polls.Where(x => x.Id == pollId && x.Votes.Any(x => x.User == user)).FirstOrDefaultAsync();
+                Console.WriteLine("Polls voted on", PollHasVoteByUser);
                 if (PollHasVoteByUser != null) { return -2; }
             }
             vote.Poll = poll;

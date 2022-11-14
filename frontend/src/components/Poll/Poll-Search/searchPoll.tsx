@@ -1,7 +1,10 @@
 import "./SearchPoll.css";
 import { loginForm } from '../../Login/LoginForm';
 import { useNavigate, NavLink } from '@solidjs/router';
-import { pollId, setPollId } from "../Poll-Answer/answerPoll";
+import { createSignal } from "solid-js";
+
+const [poll, setPoll] = createSignal('');
+const [pollId, setPollId] = createSignal('');
 
 function SearchPoll() {
 
@@ -42,6 +45,7 @@ function SearchPoll() {
             }
             else {
                 if (data["isPrivate"] && localStorage.getItem("loggedIn")) {
+                    setPoll(data);
                     navigate('/polls/:id');
                 }
                 else if (data["isPrivate"] && !(localStorage.getItem("loggedIn"))) {
@@ -49,6 +53,7 @@ function SearchPoll() {
                     navigate('/login');
                 }
                 else {
+                    setPoll(data);
                     navigate('/polls/:id');
                 }
             }
@@ -66,5 +71,7 @@ function SearchPoll() {
         </div>
     );
   }
+
+  export { poll, setPoll, pollId, setPollId};
   export default SearchPoll;
 
