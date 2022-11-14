@@ -11,43 +11,6 @@ function ResultPoll() {
     const endTime = resultPoll()["endTime"];
     const token = localStorage.getItem("token");
     var authentic = token?.substring(1, token.length-1);
-    console.log(positiveVotes);
-    console.log(negativeVotes);
-    console.log(countVotes);
-    console.log("result Poll", resultPoll()["question"]);
-
-    console.log("test: " + resultPollId());
-  /*   fetch(`https://localhost:7280/api/poll/${resultPollId()}`, {
-    // fetch(`https://localhost:7280/api/poll/1039516104483041280`, {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': 'Bearer ' + authentic,
-        },
-    })
-    .then(response => {
-        if (response.status === 200) {
-            console.log(response);
-            return response.json();
-        } else {
-            alert('Invalid fetch');
-            console.log(response);
-        }
-    })
-    .then(data => {
-        setQuestion(data['question']);
-        setEndTime(data['endTime']);
-        setPositiveVotes(data['positiveVotes']);
-        setNegativeVotes(data['negativeVotes']);
-        setCountVotes(positiveVotes() + negativeVotes());
-        setPositivePercent(positiveVotes()/countVotes()*100);
-        setNegativePercent(negativeVotes()/countVotes()*100);
-        // setPoll(data);
-        // setIsClosed(data['isClosed']);
-
-    }) */
 
     return (
         
