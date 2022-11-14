@@ -17,7 +17,7 @@ function SearchPoll() {
         const input = document.getElementById('fname') as HTMLInputElement | null;
         const value = input?.value;
 
-        const data = submit(form);
+        // const data = submit(form);
         e.preventDefault();
         fetch(`https://localhost:7280/api/poll/${value}`, {
                 method: 'GET',
@@ -30,11 +30,10 @@ function SearchPoll() {
         .then(response => {
             if (response.status === 200) {
                 console.log(response);
-                alert('Fetch success');
                 navigate('/');
                 return response.json();
             } else {
-                alert('Invalid fetch');
+                alert('Error, wrong input');
             }
         })
         .then(data => {

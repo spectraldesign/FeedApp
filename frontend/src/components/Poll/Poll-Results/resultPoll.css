@@ -1,7 +1,13 @@
+.poll-answer {
+    text-align: center;
+    display: block;
+    margin-top: 100px;
+}
+
 .poll-result {
     text-align: center;
     display: block;
-    margin-top: 200px;
+    margin-top: 50px;
 }
 
 .poll-result-form {
@@ -19,63 +25,68 @@
 
 }
 
+.radio-buttons {
+    margin-bottom: 4rem;
+
+}
+
+.result-yes {
+    background-color: #256CE2;
+    color: white;
+    text-align: right;
+    border-radius: 12px;
+}
+
+.result-no {
+    background-color: #256CE2;
+    color: white;
+    text-align: right;
+    border-radius: 12px;
+}
+
+.container-result label{
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    transition: all 0.3s;
+    color: white;
+    background-color: black;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-bottom:20px;
+
+
+}
+
+.container-result input[type="radio"] {
+    display: none;
+    background-color: black;
+}
+
+
+
+/* .text-and-button{
+    display: flex;
+    margin-bottom: 5rem;
+    text-align: center;
+} */
+
+/* .text-and-button input{
+position: relative;
+left: 80%;
+} */
+
+/* .text-and-button p {
+    position: absolute;
+} */
+
+
 .container-result {
     background-color: black;
     width: 100%;
     border-radius: 12px;
-}
-
-.result {
-    background-color: #256CE2;
-    margin-bottom:20px;
     color: white;
-    padding: 1%;
-    text-align: right;
-    font-size: 20px;
-        border-radius: 12px;
-}
-
-.yes {
-    width: attr(data-width px);
-
-}
-
-.no {
-    width: 60%;
-}
-
-
-
-.submit-answer-btn {
-    background-color: #42B6F3;
-    color: white;
-    border: none;
-    /* padding: 20px; */
-    padding: 9px 45px 9px 45px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 25px;
-    margin: 4px 2px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-
-
-
-.text-and-button{
-    display: flex;
-    margin-bottom: 5rem;
-
-}
-
-.text-and-button input{
-position: relative;
-left: 80%;
-}
-
-.text-and-button p {
-    position: absolute;
- 
-
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding:10px;
 }

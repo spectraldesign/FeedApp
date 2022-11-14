@@ -58,3 +58,11 @@ label {
     background-color: #eee;
     margin-left: 20px;
 }
+#question {
+    font-size: 35px;
+    text-align: center;
+}
+#time {
+    font-size: 35px;
+    text-align: center;
+}
