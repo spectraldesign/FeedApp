@@ -2,6 +2,7 @@ import "./answerPoll.css";
 import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import { answerForm } from "./answerPollForm";
+import { resultPollId, setResultPollId } from "../Poll-Results/resultPoll";
 
 const [pollId, setPollId] = createSignal('');
 
@@ -31,12 +32,11 @@ function AnswerPoll() {
         })
         .then(data => {
             setPoll(data);
+            setResultPollId(pollId());
         })
 
     const handleSubmit = (e: Event) => {
         const data = submit(form);
-        console.log(data);
-        alert(data);
         e.preventDefault();
         fetch(`https://localhost:7280/api/vote/${pollId()}`, {
                 method: 'POST',

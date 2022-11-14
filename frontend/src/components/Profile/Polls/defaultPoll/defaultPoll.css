@@ -73,23 +73,6 @@
     background-color: #0b3148;
 }
 
-.text-and-button{
-    display: flex;
-    margin-bottom: 5rem;
-
-}
-
-.text-and-button input{
-position: relative;
-left: 80%;
-}
-
-.text-and-button p {
-    position: absolute;
- 
-
-}
-
 .close-poll-btn {
     background-color: #42B6F3;
     color: white;
