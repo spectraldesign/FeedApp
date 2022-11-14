@@ -3,8 +3,9 @@ import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import { answerForm } from "./answerPollForm";
 import { poll, setPoll, pollId, setPollId} from "../Poll-Search/searchPoll"; 
+import { resultPollId, setResultPollId } from "../Poll-Results/resultPoll";
 
-const [resultPollId, setResultPollId] = createSignal('');
+// const [resultPollId, setResultPollId] = createSignal('');
 const [resultPoll, setResultPoll] = createSignal('');
 
 
@@ -54,7 +55,6 @@ function AnswerPoll() {
                     console.log(response);
                     setResultPollId(pollId());
                     setResultPoll(poll());
-                    alert('Vote successful');
                     navigate('/poll/results')
                     return response.text();
                 } 
@@ -103,5 +103,5 @@ function AnswerPoll() {
     );
 }
 
-export {resultPollId, setResultPollId, resultPoll, setResultPoll};
+export { resultPoll, setResultPoll};
 export default AnswerPoll;

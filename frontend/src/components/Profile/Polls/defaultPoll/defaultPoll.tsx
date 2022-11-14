@@ -89,7 +89,9 @@ export default function DefaultPoll(props: any) {
                         }}>{negativePercent().toFixed()}%</div> 
                     </div>
                     <div class="text-and-button">
-                        <p id="text"> {(poll()['positiveVotes']+poll()['negativeVotes'])} overall votes  |  Poll closes at {poll()['endTime']} </p>
+                        <p id="text"> {(poll()['positiveVotes']+poll()['negativeVotes'])} overall votes  |  <Show
+                        when={!poll()['isClosed']}
+                        fallback={<span>Poll is closed</span>}><span> Poll closes at {poll()['endTime']}</span></Show> </p>
                     </div>
                     <Show
                         when={poll()['isClosed']}

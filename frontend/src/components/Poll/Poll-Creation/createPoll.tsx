@@ -10,7 +10,6 @@ function CreatePoll() {
     const handleSubmit = (e: Event) => {
         const data = submit(form);
         console.log(data);
-        alert(data);
         e.preventDefault();
         fetch('https://localhost:7280/api/poll', {
                 method: 'POST',
@@ -25,10 +24,10 @@ function CreatePoll() {
             .then(response => {
                 if (response.status === 201) {
                     console.log(response);
-                    alert('Login successful');
+                    alert('Poll created');
                     return response.text();
                 } else {
-                    alert('Invalid credentials');
+                    alert('Invalid input');
                     console.log(response);
                 }
             }
