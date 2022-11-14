@@ -9,9 +9,13 @@ const Buttons : Component = () => {
     
     return (
         <div class='buttons'> 
-            <VoteYesButton />
-            <VoteNoButton />
-            <NextPollButton />
+            <div>
+                <VoteNoButton />
+                <VoteYesButton />
+            </div>
+            <div>
+                <NextPollButton />
+            </div>
         </div>
     )
 };

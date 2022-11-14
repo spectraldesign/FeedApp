@@ -12,7 +12,6 @@ const [onePoll, setOnePoll] = createSignal('');
 const [poll_id, setPoll_id] = createSignal('');
 
 function Votescreen (){
-
     return (
         <div>
             <Poll />

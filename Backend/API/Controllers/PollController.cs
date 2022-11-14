@@ -119,6 +119,7 @@ namespace API.Controllers
         [HttpPut("{Id}/close")]
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
+        [ProducesResponseType(404)]
         public async Task<ActionResult<int>> closePoll(string Id)
         {
             var result = await Mediator.Send(new ClosePollCommand(Id));
@@ -139,7 +140,7 @@ namespace API.Controllers
                     );
             }
             //_rabbitMQClient.PublishClosePoll(result);
-            return result == 1 ? Ok($"Poll {Id} closed.") : new BadRequestObjectResult(result);
+            return result >= 1 ? Ok($"Poll {Id} closed.") : new BadRequestObjectResult(result);
         }
 
         /// <summary>
