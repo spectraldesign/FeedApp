@@ -11,7 +11,7 @@ function CreatePoll() {
         const data = submit(form);
         console.log(data);
         e.preventDefault();
-        fetch('https://localhost:7280/api/poll', {
+        fetch(`${import.meta.env.VITE_BASE_URL}poll`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

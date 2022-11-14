@@ -16,8 +16,7 @@ function ResultPoll() {
     var authentic = token?.substring(1, token.length-1);
 
     console.log("test: " + resultPollId());
-    fetch(`https://localhost:7280/api/poll/${resultPollId()}`, {
-    // fetch(`https://localhost:7280/api/poll/1039516104483041280`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}poll/${resultPollId()}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -43,8 +42,6 @@ function ResultPoll() {
         setCountVotes(positiveVotes() + negativeVotes());
         setPositivePercent(positiveVotes()/countVotes()*100);
         setNegativePercent(negativeVotes()/countVotes()*100);
-        // setPoll(data);
-        // setIsClosed(data['isClosed']);
 
     })
 

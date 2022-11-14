@@ -23,7 +23,7 @@ function Profile() {
     var authentic = token?.substring(1, token.length-1);
 
     const navigate = useNavigate();
-    fetch('https://localhost:7280/api/user/self', {
+    fetch(`${import.meta.env.VITE_BASE_URL}user/self`, {
                 method: 'GET',
                 mode: 'cors',
                 headers: {
@@ -49,7 +49,7 @@ function Profile() {
                 setUserName('Username: ' + data['userName']);
                 setEmail('Email: ' + data['email']);
             })
-            fetch('https://localhost:7280/api/vote/myvotes', {
+            fetch(`${import.meta.env.VITE_BASE_URL}vote/myvotes`, {
                 method: 'GET',
                 mode: 'cors',
                 headers: {

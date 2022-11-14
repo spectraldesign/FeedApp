@@ -15,7 +15,7 @@ export default function DefaultPoll(props: any) {
     const token = localStorage.getItem("token");
     var authentic = token?.substring(1, token.length-1);
 
-    fetch(`https://localhost:7280/api/poll/${props.id}`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}poll/${props.id}`, {
             method: 'GET',
             mode: 'cors',
             headers: {
@@ -49,7 +49,7 @@ export default function DefaultPoll(props: any) {
         })
 
     const handleSubmit = () => {
-        fetch(`https://localhost:7280/api/poll/${props.id}/close`, {
+        fetch(`${import.meta.env.VITE_BASE_URL}poll/${props.id}/close`, {
                 method: 'PUT',
                 mode: 'cors',
                 headers: {
