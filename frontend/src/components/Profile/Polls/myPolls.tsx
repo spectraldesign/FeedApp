@@ -13,7 +13,7 @@ function MyPolls() {
     var authentic = token?.substring(1, token.length-1);
 
     const navigate = useNavigate();
-    fetch('https://localhost:7280/api/poll/myPolls', {
+    fetch(`${import.meta.env.VITE_BASE_URL}poll/myPolls`, {
                 method: 'GET',
                 mode: 'cors',
                 headers: {

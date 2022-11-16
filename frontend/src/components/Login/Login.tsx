@@ -13,7 +13,7 @@ const Login: Component = () => {
         const data = submit(form);
         console.log(data);
         e.preventDefault();
-        fetch('https://localhost:7280/api/user/login', {
+        fetch(`${import.meta.env.VITE_BASE_URL}user/login`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -21,7 +21,7 @@ const Login: Component = () => {
                     'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify(data)
-            })
+            }).catch(err => err)
             .then(response => {
                 if (response.status === 200) {
                     console.log(response);
@@ -33,6 +33,7 @@ const Login: Component = () => {
             }
         )
             .then(data => {
+                if(!data){return}
                 localStorage.setItem("token", JSON.stringify(data));
                 localStorage.setItem("loggedIn", JSON.stringify(true));
                 navigate('/');

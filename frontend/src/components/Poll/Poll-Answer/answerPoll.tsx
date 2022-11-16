@@ -16,31 +16,10 @@ function AnswerPoll() {
     const token = localStorage.getItem("token");
     var authentic = token?.substring(1, token.length-1);
 
-    // fetch(`https://localhost:7280/api/poll/${pollId()}`, {
-    //         method: 'GET',
-    //         mode: 'cors',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Access-Control-Allow-Origin': '*'
-    //         },
-    //     })
-    //     .then(response => {
-    //         if (response.status === 200) {
-    //             console.log(response);
-    //             return response.json();
-    //         } else {
-    //             alert('Invalid fetch');
-    //         }
-    //     })
-    //     .then(data => {
-    //         setPoll(data);
-    //         setResultPollId(pollId());
-    //     })
-
     const handleSubmit = (e: Event) => {
         const data = submit(form);
         e.preventDefault();
-        fetch(`https://localhost:7280/api/vote/${pollId()}`, {
+        fetch(`${import.meta.env.VITE_BASE_URL}vote/${pollId()}`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {

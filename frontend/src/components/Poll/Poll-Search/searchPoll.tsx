@@ -22,7 +22,7 @@ function SearchPoll() {
 
         // const data = submit(form);
         e.preventDefault();
-        fetch(`https://localhost:7280/api/poll/${value}`, {
+        fetch(`${import.meta.env.VITE_BASE_URL}poll/${value}`, {
                 method: 'GET',
                 mode: 'cors',
                 headers: {

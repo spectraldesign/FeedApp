@@ -9,7 +9,7 @@ function APIButton() {
     return (
         <div>
             <div class="apibutton">
-                <a href="https://localhost:7280/swagger/index.html">API</a>
+                <a href={import.meta.env.VITE_SWAGGER_URL} target='_blank'>API</a>
             </div>
         </div>
     );

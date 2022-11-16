@@ -11,7 +11,7 @@ const Register: Component = () => {
         const data = submit(form);
         e.preventDefault();
         console.log(data);   
-        fetch('https://localhost:7280/api/user/register', {
+        fetch(`${import.meta.env.VITE_BASE_URL}user/register`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
