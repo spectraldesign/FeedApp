@@ -1,6 +1,6 @@
 import { render } from 'solid-js/web';
 import { createSignal, Show } from 'solid-js';
-import "./profileButton.css";
+import "../../button.css";
 import { NavLink } from '@solidjs/router';
 
 function ProfileButton() {
@@ -9,7 +9,7 @@ function ProfileButton() {
   
   return (
     <>
-      <div class='login-btn'>
+      <div class='button profile'>
         {/* <button onClick={toggle}>Log out</button> */}
         <NavLink href='/profile' class="testertester"><i class='fas fa-user-alt' style='font-size:15px;color:#c2c7cc;'></i> Profile </NavLink>
         {/* <i class='fas fa-user-alt' style='font-size:10px;color:white;'>Profile</i> */}

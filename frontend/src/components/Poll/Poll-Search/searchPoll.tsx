@@ -36,7 +36,7 @@ function SearchPoll() {
                 navigate('/');
                 return response.json();
             } else {
-                alert('Error, wrong input');
+                alert('Error, invalid input');
             }
         })
         .then(data => {
@@ -64,6 +64,7 @@ function SearchPoll() {
         <div class="trial">
             <div class="poll-search">
                 <form class="poll-search-form" action="" onSubmit={handleSubmit}>
+                    <img class="logo" src="LOGO URL GOES HERE"></img>
                     <input class="poll-search-input" type="text" id="fname" name="firstname" onChange={handleChange} placeholder="&#128269; Enter Poll ID"></input>
                     <input class="submit-poll-btn" type="submit" value="Enter"></input>
                 </form>

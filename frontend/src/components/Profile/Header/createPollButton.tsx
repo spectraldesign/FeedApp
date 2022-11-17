@@ -1,15 +1,14 @@
 import { createSignal, createEffect, createMemo } from "solid-js";
 // import { css } from 'emotion';
-import "./createPollButton.css";
+import "../../button.css"
 
 function CreatePollButton() {
-    
     return (
-        <div class="container">
-            <div class="create-btn">
+        <div class="button container">
+            <div class="button createpoll">
                 <a href="/poll/create">Create Poll</a>
             </div>
-            <div class="my-poll-btn">
+            <div class="button mypolls">
                 <a href="/profile/polls">My polls</a>
             </div>
         </div>
