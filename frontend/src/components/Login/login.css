@@ -45,25 +45,6 @@
     text-align: center;
 }
 
-.log-btn {
-    background-color: #42B6F3;
-    color: white;
-    border: none;
-    padding: 15px 70px 15px 70px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 25px;
-    margin: 4px 2px;
-    border-radius: 12px;
-    margin-top: 20px;
-}
-
-.log-btn:hover {
-    background-color: #0b3148;
-    cursor: pointer;
-}
-
 .form-control {
     background-color: #dae0e7;
     border: none;

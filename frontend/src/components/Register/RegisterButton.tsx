@@ -1,6 +1,5 @@
 import { NavLink } from '@solidjs/router';
 import { Component } from 'solid-js';
-import "./register.css";
 
 const RegisterButton: Component = () => {
     return (

@@ -32,13 +32,11 @@ const Register: Component = () => {
             }
         )
         };
-    
-
     return (
         <div class="container">
             <h1>Register</h1>
             <p> Please fill out the following information</p>
-            <form onSubmit={handleSubmit}>
+            <form class="form" onSubmit={handleSubmit}>
                 <div class="form-group">
                     <label class="label" for="firstname">First name:</label>
                     <input 
@@ -64,7 +62,7 @@ const Register: Component = () => {
                     />
                 </div>
                 <div class="form-group">
-                    <label class="email-text" for="email">Email:</label>
+                    <label class="label" for="email">Email:</label>
                     <input 
                         type="text" 
                         class="form-control" 
@@ -99,7 +97,7 @@ const Register: Component = () => {
                         required 
                     />
                 </div>
-                <input class="form-submit reg-btn" type="submit" value="Register user" />
+                <input class="form-submit submit-poll-btn" type="submit" value="Register user" />
             </form>
         </div>
     )

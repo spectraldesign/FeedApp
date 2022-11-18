@@ -27,7 +27,7 @@
     border-width: medium;
 }
 .button a:active {
-    color: red;
+    transform: translateY(2px);
 }
 
 .button.homebutton{
@@ -36,8 +36,8 @@
 }
 
 .button.api{
-    right: 0px;
     bottom: 0px;
+    right: 0px;
     
 }
 
@@ -62,4 +62,14 @@
 .button.mypolls{
     width: 150px;
     margin-left: 200px;
+}
+
+.button.login{
+    top: 0px;
+    width: 150px;
+    right: 0px;
+}
+
+.button.profile{
+    right: 0px;
 }

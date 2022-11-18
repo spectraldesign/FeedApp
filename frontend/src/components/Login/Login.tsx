@@ -46,7 +46,7 @@ const Login: Component = () => {
         <div class="container">
             <h1>Login</h1>
             <p> Please fill out the following information</p>
-            <form onSubmit={handleSubmit}>
+            <form class="form" onSubmit={handleSubmit}>
                 <div class="form-group">
                     <label class="label" for="username">Username:</label>
                     <input 
@@ -72,8 +72,8 @@ const Login: Component = () => {
                     />
                 </div>
 
-                <input class="form-submit log-btn" type="submit" value="Login" />
-                <div>
+                <input class="form-submit submit-poll-btn" type="submit" value="Login" />
+                <div class="form-submit">
                     Dont have an account? <NavLink href='/register' >Register here</NavLink>
                 </div>
             </form>

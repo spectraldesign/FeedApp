@@ -1,56 +1,47 @@
 .profile-page {
     text-align: center;
-    margin-top: 50px;
-    /* align-items: center; */
+    margin-top: 150px;
+    font-family: 'Open-Sans', sans-serif;
 }
 
 .picture {
-    font-size: 100px;
-    height: 100px;
-    width: 130px;
-    background-color: #42B6F3;
-    border-radius: 20%;
+    height: 180px;
+    width: 180px;
+    background-color: #0073b1;
+    border: 2px solid white;
+    border-radius: 100%;
     display: inline-block;
     margin-bottom: 50px;
-    padding-bottom: 30px;
 }
 
-/* .picture::placeholder {
-    color: #42B6F3;
-    text-align: center;
-    font-size: 30px;
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-} */
-
 .firstname {
-    background-color: #d6c9bf;
-    /* width: 30%; */
-    min-width: 30%;
+    background-color: #1c1f24;
+    border: 1px solid white;
+    min-width: 50%;
     display: inline-block;
-    border-radius: 5em;
+    border-radius: 20px;
     padding: 10px;
     font-size: 40px;
     margin-bottom: 20px;
 }
 
 .username {
-    background-color: #d6c9bf;
-    /* width: 30%; */
-    min-width: 30%;
+    background-color: #1c1f24;
+    border: 1px solid white;
+    min-width: 50%;
     display: inline-block;
-    border-radius: 5em;
+    border-radius: 20px;
     padding: 10px;
     font-size: 40px;
     margin-bottom: 20px;
 }
 
 .email {
-    background-color: #d6c9bf;
-    /* width: 30%; */
-    min-width: 30%;
+    background-color: #1c1f24;
+    border: 1px solid white;
+    min-width: 50%;
     display: inline-block;
-    border-radius: 5em;
+    border-radius: 20px;
     padding: 10px;
     font-size: 40px;
     margin-bottom: 20px;
@@ -59,6 +50,7 @@
 .bottom {
     display: flex;
     justify-content: center;
+    font-size: 30px;
 }
 
 .seperator {
@@ -69,11 +61,11 @@
     margin-right: 20px;
 }
 
-/* .circle {
-    height: 100px;
-    width: 100px;
-    background-color: purple;
-    border-radius: 50%;
-    display: inline-block;
+.pollButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
     margin-bottom: 50px;
-  } */
+
+}

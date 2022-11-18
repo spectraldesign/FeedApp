@@ -26,6 +26,10 @@
     border-radius: 12px;
 }
 
+.submit-poll-btn:active{
+    transform: translateY(2px);
+}
+
 .submit-poll-btn:hover {
     background-color: #134b6e;
     cursor: pointer;
@@ -57,8 +61,7 @@
 }
 
 .logo{
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
     margin-top: -200px;
-    margin-bottom: 100px;
 }

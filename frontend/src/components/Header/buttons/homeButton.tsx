@@ -6,7 +6,7 @@ function HomeButton() {
     
     return (
         <div>
-            <div class="button homebutton">
+            <div class="button home">
                 <a href="/">FeedApp</a>
             </div>
         </div>

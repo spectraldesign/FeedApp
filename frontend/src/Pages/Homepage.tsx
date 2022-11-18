@@ -10,8 +10,6 @@ const Homepage: Component = () => {
             <Header />
             <SearchPoll />
             <APIButton />
-            {/* Uncomment line below to check create poll setup */}
-            {/* <CreatePoll /> */}
         </div>
     )
 }
