@@ -2,6 +2,7 @@ import { Component } from 'solid-js';
 import { registerForm } from './RegisterForm';
 import "./register.css";
 import { useNavigate } from '@solidjs/router';
+import toast from 'solid-toast';
 
 const Register: Component = () => {
     const { form, updateFormField, submit, clearField } = registerForm();
@@ -23,11 +24,11 @@ const Register: Component = () => {
             .then(response => {
                 if (response.status === 200) {
                     console.log(response);
-                    alert('Registration successful');
+                    toast.success("Registration success", {position:"bottom-center", style: {'background-color': '#cdf2cb',}})
                     navigate('/login');
                     return response;
                 } else {
-                    alert('Invalid credentials');
+                    toast.error("Invalid credentials", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                 }
             }
         )
@@ -97,7 +98,7 @@ const Register: Component = () => {
                         required 
                     />
                 </div>
-                <input class="form-submit submit-poll-btn" type="submit" value="Register user" />
+                <input class="form-submit submit-btn" type="submit" value="Register user" />
             </form>
         </div>
     )

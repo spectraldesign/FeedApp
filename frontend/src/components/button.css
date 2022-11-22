@@ -73,3 +73,25 @@
 .button.profile{
     right: 0px;
 }
+
+.submit-btn {
+    background-color: #34799e;
+    color: white;
+    border: none;
+    padding: 15px 70px 15px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    border-radius: 12px;
+}
+
+.submit-btn:active{
+    transform: translateY(2px);
+}
+
+.submit-btn:hover {
+    background-color: #134b6e;
+    cursor: pointer;
+}

@@ -1,12 +1,12 @@
 import { formatPostcssSourceMap } from "vite";
 import "./createPoll.css";
 import { createForm } from './CreatePollForm';
+import { DateTimePicker } from 'date-time-picker-solid'
 
 function CreatePoll() {
-    const { form, updateFormField, submit, clearField } = createForm();
+    const { form, updateFormField, submit, setForm } = createForm();
     const token = localStorage.getItem("token");
-    var authentic = token?.substring(1, token.length-1);
-
+    let authentic = token?.substring(1, token.length-1);
     const handleSubmit = (e: Event) => {
         const data = submit(form);
         console.log(data);
@@ -34,8 +34,6 @@ function CreatePoll() {
         )
     }
 
-    
-
     return (
         <div class="trial">
             <div class="poll-create">
@@ -50,15 +48,19 @@ function CreatePoll() {
                         onInput={updateFormField('question')}
                         required
                         />
-                    <input 
-                        type="text" 
-                        class="poll-create-input" 
-                        id="time" 
-                        placeholder="&#128337; Time Limit"
-                        value={form.endTime}
-                        onInput={updateFormField('endTime')}
-                        required
+                    <div class="dateTimeDiv">
+                        <DateTimePicker 
+                        minDate={new Date(Date.now())} 
+                        currentDate={new Date(Date.now())} 
+                        enableTimeView
+                        dateFormat="DD MMM, YYYY @ HH:mm"
+                        closeOnSelect={true}
+                        calendarResponse={x=>{
+                            console.log(x); 
+                            setForm({["endTime"]: x.currentDate});
+                        }}
                         />
+                    </div>
                     <div class="privacy">
                         <label class="privacy"><h3>Private Poll: </h3>
                         <input 

@@ -8,11 +8,12 @@ import ProfilePage from './Pages/ProfilePage';
 import VotePage from './Pages/VotePage';
 import CreatePollPage from './Pages/CreatePollPage';
 import ResultPage from './Pages/ResultPage';
-
+import { Toaster } from 'solid-toast';
 
 const App: Component = () => {
   return (
     <>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />} />

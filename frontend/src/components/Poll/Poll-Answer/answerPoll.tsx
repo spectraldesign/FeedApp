@@ -1,4 +1,5 @@
 import "./answerPoll.css";
+import "../../button.css"
 import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import { answerForm } from "./answerPollForm";
@@ -73,7 +74,7 @@ function AnswerPoll() {
                             onChange={updateFormField('isPositive')}/>
                         <label for="negative">No</label>
                         <p id="text"> {poll()['positiveVotes'] + poll()['negativeVotes']} overall votes  |  Poll closes at {poll()['endTime']} </p>
-                        <input class="submit-answer-btn"  type="submit" value="Vote"></input>
+                        <input class="submit-btn"  type="submit" value="Vote"></input>
                         </div>
                     </div>
                 </form>

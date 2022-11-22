@@ -13,27 +13,6 @@
     width: 100%;
 }
 
-.submit-poll-btn {
-    background-color: #34799e;
-    color: white;
-    border: none;
-    padding: 15px 70px 15px 70px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 25px;
-    margin: 4px 2px;
-    border-radius: 12px;
-}
-
-.submit-poll-btn:active{
-    transform: translateY(2px);
-}
-
-.submit-poll-btn:hover {
-    background-color: #134b6e;
-    cursor: pointer;
-}
 
 .poll-search-input{
     color: #42B6F3;
@@ -64,4 +43,5 @@
     height: 300px;
     width: 300px;
     margin-top: -200px;
+    margin-bottom: 50px;
 }
