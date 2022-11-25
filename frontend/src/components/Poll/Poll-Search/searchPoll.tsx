@@ -19,7 +19,9 @@ function SearchPoll() {
 
     const handleSubmit = (e: Event) => {
         const input = document.getElementById('fname') as HTMLInputElement | null;
-        const value = input?.value;
+        let value = input?.value;
+        if(!value){value = "_"}
+        console.log(value)
 
         // const data = submit(form);
         e.preventDefault();
@@ -33,7 +35,6 @@ function SearchPoll() {
         })
         .then(response => {
             if (response.status === 200) {
-                console.log(response);
                 navigate('/');
                 return response.json();
             } else {
@@ -65,7 +66,7 @@ function SearchPoll() {
         <div class="trial">
             <div class="poll-search">
                 <form class="poll-search-form" action="" onSubmit={handleSubmit}>
-                    <img class="logo" src="https://media.discordapp.net/attachments/579830395412152334/1042926809861333062/feedapplmao.png?width=1080&height=1080"></img>
+                    <img class="logo" src="https://media.discordapp.net/attachments/579830395412152334/1045834936323674162/feedapp.png?width=1080&height=1080"></img>
                     <input class="poll-search-input" type="text" id="fname" name="firstname" onChange={handleChange} placeholder="&#128269; Enter Poll ID"></input>
                     <input class="submit-btn" type="submit" value="Enter"></input>
                 </form>

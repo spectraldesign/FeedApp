@@ -2,11 +2,14 @@ import { formatPostcssSourceMap } from "vite";
 import "./createPoll.css";
 import { createForm } from './CreatePollForm';
 import { DateTimePicker } from 'date-time-picker-solid'
+import toast from "solid-toast";
+import { useNavigate, NavLink } from '@solidjs/router';
 
 function CreatePoll() {
     const { form, updateFormField, submit, setForm } = createForm();
     const token = localStorage.getItem("token");
     let authentic = token?.substring(1, token.length-1);
+    const navigate = useNavigate();
     const handleSubmit = (e: Event) => {
         const data = submit(form);
         console.log(data);
@@ -24,10 +27,11 @@ function CreatePoll() {
             .then(response => {
                 if (response.status === 201) {
                     console.log(response);
-                    alert('Poll created');
+                    toast.success("Poll created", {position:"bottom-center", style: {'background-color': '#cdf2cb',}})
+                    navigate("/")
                     return response.text();
                 } else {
-                    alert('Invalid input');
+                    toast.error("Invalid input", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                     console.log(response);
                 }
             }

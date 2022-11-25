@@ -9,7 +9,6 @@ import VotePage from './Pages/VotePage';
 import CreatePollPage from './Pages/CreatePollPage';
 import ResultPage from './Pages/ResultPage';
 import { Toaster } from 'solid-toast';
-
 const App: Component = () => {
   return (
     <>
