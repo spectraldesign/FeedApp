@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
 import Header from '../components/Header/header';
-import CreatePoll from '../components/Poll/Poll-Creation/createPoll';
+import PollList from '../components/Poll/Poll-List/pollList';
 import SearchPoll from '../components/Poll/Poll-Search/searchPoll';
 import APIButton from '../components/API/apiButton';
 import "../components/button.css";
@@ -9,6 +9,7 @@ const Homepage: Component = () => {
         <div>
             <Header />
             <SearchPoll />
+            <PollList />
             <APIButton />
         </div>
     )

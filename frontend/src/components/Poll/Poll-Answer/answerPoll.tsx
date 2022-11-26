@@ -39,7 +39,7 @@ function AnswerPoll() {
                     return response.text();
                 } 
                 else if (response.status === 403){
-                    toast.error("Cannot vote on closed poll twice", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
+                    toast.error("Cannot vote on private poll twice", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                 }
                 else {
                     toast.error("Invalid vote", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})

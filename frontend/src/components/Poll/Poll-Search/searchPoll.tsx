@@ -14,7 +14,6 @@ function SearchPoll() {
 
     const handleChange = (e: any) => {
         setPollId(e.target.value);
-        console.log("hello you", pollId());
     }
 
     const handleSubmit = (e: Event) => {
@@ -55,6 +54,7 @@ function SearchPoll() {
                     navigate('/login');
                 }
                 else {
+                    console.log(data)
                     setPoll(data);
                     navigate('/polls/:id');
                 }
