@@ -93,7 +93,7 @@ function Profile() {
             <div class="profile-page">
                 <div class="circle">
                     <div class="picture">
-                        <i class='fas fa-user-alt' style='font-size:80px;color:white;'></i>
+                        <i class='fas fa-user-alt fa-spin' style='font-size:80px;color:white;'></i>
                     </div>
                 </div>
                 <div class="pollButtons">
