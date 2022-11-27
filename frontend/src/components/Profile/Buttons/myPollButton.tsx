@@ -1,6 +1,4 @@
-import "../../button.css"
-
-function CreatePollButton() {
+function MyPollButton() {
     return (
         <div class="button mypolls">
             <a href="/profile/polls">My polls</a>
@@ -8,5 +6,5 @@ function CreatePollButton() {
     );
   }
 
-  export default CreatePollButton;
+  export default MyPollButton;
 
