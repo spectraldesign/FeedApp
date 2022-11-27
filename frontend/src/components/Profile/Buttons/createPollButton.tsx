@@ -1,13 +1,13 @@
-import { Component } from "solid-js";
+import { NavLink } from "@solidjs/router";
 import "../../button.css"
 
-const MyPollButton: Component = () => {
+function CreatePollButton() {
     return (
         <div class="button createpoll">
-            <a href="/poll/create">Create Poll</a>
+            <NavLink href="/poll/create">Create Poll</NavLink>
         </div>
     );
   }
 
-  export default MyPollButton;
+  export default CreatePollButton;
 
