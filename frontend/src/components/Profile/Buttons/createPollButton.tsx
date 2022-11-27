@@ -1,6 +1,7 @@
+import { Component } from "solid-js";
 import "../../button.css"
 
-function CreatePollButton() {
+const MyPollButton: Component = () => {
     return (
         <div class="button createpoll">
             <a href="/poll/create">Create Poll</a>
@@ -8,5 +9,5 @@ function CreatePollButton() {
     );
   }
 
-  export default CreatePollButton;
+  export default MyPollButton;
 
