@@ -1,12 +1,15 @@
 import { formatPostcssSourceMap } from "vite";
 import "./createPoll.css";
 import { createForm } from './CreatePollForm';
+import { DateTimePicker } from 'date-time-picker-solid'
+import toast from "solid-toast";
+import { useNavigate, NavLink } from '@solidjs/router';
 
 function CreatePoll() {
-    const { form, updateFormField, submit, clearField } = createForm();
+    const { form, updateFormField, submit, setForm } = createForm();
     const token = localStorage.getItem("token");
-    var authentic = token?.substring(1, token.length-1);
-
+    let authentic = token?.substring(1, token.length-1);
+    const navigate = useNavigate();
     const handleSubmit = (e: Event) => {
         const data = submit(form);
         console.log(data);
@@ -24,17 +27,16 @@ function CreatePoll() {
             .then(response => {
                 if (response.status === 201) {
                     console.log(response);
-                    alert('Poll created');
+                    toast.success("Poll created", {position:"bottom-center", style: {'background-color': '#cdf2cb',}})
+                    navigate("/")
                     return response.text();
                 } else {
-                    alert('Invalid input');
+                    toast.error("Invalid input", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                     console.log(response);
                 }
             }
         )
     }
-
-    
 
     return (
         <div class="trial">
@@ -50,15 +52,19 @@ function CreatePoll() {
                         onInput={updateFormField('question')}
                         required
                         />
-                    <input 
-                        type="text" 
-                        class="poll-create-input" 
-                        id="time" 
-                        placeholder="&#128337; Time Limit"
-                        value={form.endTime}
-                        onInput={updateFormField('endTime')}
-                        required
+                    <div class="dateTimeDiv">
+                        <DateTimePicker 
+                        minDate={new Date(Date.now())} 
+                        currentDate={new Date(Date.now())} 
+                        enableTimeView
+                        dateFormat="DD MMM, YYYY @ HH:mm"
+                        closeOnSelect={true}
+                        calendarResponse={x=>{
+                            console.log(x); 
+                            setForm({["endTime"]: x.currentDate});
+                        }}
                         />
+                    </div>
                     <div class="privacy">
                         <label class="privacy"><h3>Private Poll: </h3>
                         <input 

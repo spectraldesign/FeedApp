@@ -2,6 +2,7 @@ import { Component } from 'solid-js';
 import { registerForm } from './RegisterForm';
 import "./register.css";
 import { useNavigate } from '@solidjs/router';
+import toast from 'solid-toast';
 
 const Register: Component = () => {
     const { form, updateFormField, submit, clearField } = registerForm();
@@ -23,22 +24,20 @@ const Register: Component = () => {
             .then(response => {
                 if (response.status === 200) {
                     console.log(response);
-                    alert('Registration successful');
+                    toast.success("Registration success", {position:"bottom-center", style: {'background-color': '#cdf2cb',}})
                     navigate('/login');
                     return response;
                 } else {
-                    alert('Invalid credentials');
+                    toast.error("Invalid credentials", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                 }
             }
         )
         };
-    
-
     return (
         <div class="container">
             <h1>Register</h1>
             <p> Please fill out the following information</p>
-            <form onSubmit={handleSubmit}>
+            <form class="form" onSubmit={handleSubmit}>
                 <div class="form-group">
                     <label class="label" for="firstname">First name:</label>
                     <input 
@@ -64,7 +63,7 @@ const Register: Component = () => {
                     />
                 </div>
                 <div class="form-group">
-                    <label class="email-text" for="email">Email:</label>
+                    <label class="label" for="email">Email:</label>
                     <input 
                         type="text" 
                         class="form-control" 
@@ -99,7 +98,7 @@ const Register: Component = () => {
                         required 
                     />
                 </div>
-                <input class="form-submit reg-btn" type="submit" value="Register user" />
+                <input class="form-submit submit-btn" type="submit" value="Register user" />
             </form>
         </div>
     )

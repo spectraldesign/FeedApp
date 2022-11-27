@@ -4,6 +4,7 @@ import RegisterButton from '../Register/RegisterButton';
 import { useNavigate, NavLink } from '@solidjs/router';
 import { createResource } from 'solid-js';
 import "./login.css";
+import toast from 'solid-toast';
 
 const Login: Component = () => {
     const { form, updateFormField, submit, clearField } = loginForm();
@@ -25,10 +26,10 @@ const Login: Component = () => {
             .then(response => {
                 if (response.status === 200) {
                     console.log(response);
-                    alert('Login successful');
+                    toast.success("Login success", {position:"bottom-center", style: {'background-color': '#cdf2cb',}})
                     return response.text();
                 } else {
-                    alert('Invalid credentials');
+                    toast.error("Invalid credentials", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                 }
             }
         )
@@ -46,7 +47,7 @@ const Login: Component = () => {
         <div class="container">
             <h1>Login</h1>
             <p> Please fill out the following information</p>
-            <form onSubmit={handleSubmit}>
+            <form class="form" onSubmit={handleSubmit}>
                 <div class="form-group">
                     <label class="label" for="username">Username:</label>
                     <input 
@@ -72,8 +73,8 @@ const Login: Component = () => {
                     />
                 </div>
 
-                <input class="form-submit log-btn" type="submit" value="Login" />
-                <div>
+                <input class="form-submit submit-btn" type="submit" value="Login" />
+                <div class="form-submit">
                     Dont have an account? <NavLink href='/register' >Register here</NavLink>
                 </div>
             </form>

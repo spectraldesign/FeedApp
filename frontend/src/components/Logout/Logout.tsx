@@ -1,18 +1,21 @@
-import { Navigate, useNavigate } from "@solidjs/router";
-import { createSignal, createEffect, createMemo } from "solid-js";
-// import { css } from 'emotion';
 import "./Logout.css";
+import "../button.css"
+import toast from "solid-toast";
+import { useNavigate, NavLink } from '@solidjs/router';
 
 function Logout() {
+    const navigate = useNavigate();
     const logoutFunc = () => {
         localStorage.clear();
-        alert('Logout successful');
+        //alert('Logout successful');
+        toast.success("Logout successful", {position:"bottom-center", style: {'background-color': '#cdf2cb',}})
+        navigate('/');
       }
     
     return (
         <div>
             <div class="logout">
-                <a href="/login" class="logout-btn" onClick={logoutFunc}>Logout</a>
+                <button class="submit-btn" onClick={logoutFunc}>Logout</button>
             </div>
         </div>
     );

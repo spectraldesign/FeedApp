@@ -1,9 +1,11 @@
 import "./answerPoll.css";
+import "../../button.css"
 import { useNavigate } from "@solidjs/router";
 import { createSignal } from "solid-js";
 import { answerForm } from "./answerPollForm";
 import { poll, setPoll, pollId, setPollId} from "../Poll-Search/searchPoll"; 
 import { resultPollId, setResultPollId } from "../Poll-Results/resultPoll";
+import toast from "solid-toast";
 
 // const [resultPollId, setResultPollId] = createSignal('');
 const [resultPoll, setResultPoll] = createSignal('');
@@ -31,19 +33,16 @@ function AnswerPoll() {
             })
             .then(response => {
                 if (response.status === 201) {
-                    console.log(response);
                     setResultPollId(pollId());
                     setResultPoll(poll());
                     navigate('/poll/results')
                     return response.text();
                 } 
                 else if (response.status === 403){
-                    console.log(response);
-                    alert("Cannot vote on same poll twice");
+                    toast.error("Cannot vote on private poll twice", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                 }
                 else {
-                    console.log(response);
-                    alert('Invalid vote');
+                    toast.error("Invalid vote", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                 }
             }
         )
@@ -73,7 +72,7 @@ function AnswerPoll() {
                             onChange={updateFormField('isPositive')}/>
                         <label for="negative">No</label>
                         <p id="text"> {poll()['positiveVotes'] + poll()['negativeVotes']} overall votes  |  Poll closes at {poll()['endTime']} </p>
-                        <input class="submit-answer-btn"  type="submit" value="Vote"></input>
+                        <input class="submit-btn"  type="submit" value="Vote"></input>
                         </div>
                     </div>
                 </form>

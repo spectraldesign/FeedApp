@@ -1,5 +1,6 @@
 import { useNavigate } from "@solidjs/router";
 import { createSignal, Show } from "solid-js";
+import toast from "solid-toast";
 import "./defaultPoll.css";
 
 export default function DefaultPoll(props: any) {
@@ -59,7 +60,7 @@ export default function DefaultPoll(props: any) {
                 },
         })
         .then(response => {
-            if (response.status === 200) {
+            if (response?.status === 200) {
                 console.log(response);
                 alert('Delete poll success');
                 navigate('/profile/polls');
@@ -95,7 +96,7 @@ export default function DefaultPoll(props: any) {
                     </div>
                     <Show
                         when={poll()['isClosed']}
-                        fallback={<input class="submit-poll-btn" type="submit" value="Close Poll"></input>}></Show>
+                        fallback={<input class="submit-btn" type="submit" value="Close Poll"></input>}></Show>
                 </div>
                 </form>
             </div>

@@ -66,3 +66,18 @@ label {
     font-size: 35px;
     text-align: center;
 }
+
+.dateTimeDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -60px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.cal-initial-view.cur-pointer{
+    height: 50px;
+    width: 50%;
+    margin-left: 90px;
+}

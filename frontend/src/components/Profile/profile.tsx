@@ -1,7 +1,8 @@
 import { createSignal, createEffect, createMemo } from "solid-js";
-// import { css } from 'emotion';
 import "./profile.css";
 import { useNavigate, NavLink } from '@solidjs/router';
+import MyPollButton from "./buttons/myPollButton";
+import CreatePollButton from "./buttons/createPollButton";
 
 interface Tester {
     fullNameTest: string;
@@ -18,6 +19,7 @@ function Profile() {
     const [email, setEmail] = createSignal('');
     setEmail('Email');
     const [votes, setVotes] = createSignal(0);
+    const [polls, setPolls] = createSignal(0);
 
     const token = localStorage.getItem("token");
     var authentic = token?.substring(1, token.length-1);
@@ -31,13 +33,10 @@ function Profile() {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': 'Bearer ' + authentic,
                 },
-                
-                // body: JSON.stringify(data)
             })
             .then(response => {
                 if (response.status === 200) {
                     console.log(response);
-                    // alert('Get request success');
                     return response.json();
                 } else {
                     alert('Get request success invalid');
@@ -63,13 +62,32 @@ function Profile() {
                         console.log(response);
                         return response.json();
                     } else {
-                        alert('Get request success invalid');
+                        alert('Get request invalid');
                     }
                 })
                 .then(data => {
                     setVotes(data.length);
                 })
-
+            fetch(`${import.meta.env.VITE_BASE_URL}poll/myPolls`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + authentic,
+                },
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        console.log(response);
+                        return response.json();
+                    } else {
+                        alert('Get request invalid');
+                    }
+                })
+                .then(data => {
+                    setPolls(data.length);
+                })
     return (
         <div>
             <div class="profile-page">
@@ -78,11 +96,12 @@ function Profile() {
                         <i class='fas fa-user-alt' style='font-size:80px;color:white;'></i>
                     </div>
                 </div>
-                {/* <input class="picture" value="&#9786;"></input> */}
+                <div class="pollButtons">
+                    <CreatePollButton />
+                    <MyPollButton />
+                </div>
                 <div class="centerer">
                     <div class="firstname">
-                        {/* {fullName} */}
-                        {/* conditon: {cond() ? 'true' : 'false'} */}
                         {fullName}
                     </div>
                 </div>
@@ -100,7 +119,7 @@ function Profile() {
                 <div class="bottom">
                     <div class="votes">{votes} votes</div>
                     <div class="seperator">|</div>
-                    <div class="polls">3,120 polls</div>
+                    <div class="polls">{polls} polls</div>
                 </div>
             </div>
         </div>

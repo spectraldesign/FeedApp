@@ -2,6 +2,7 @@ import "./SearchPoll.css";
 import { loginForm } from '../../Login/LoginForm';
 import { useNavigate, NavLink } from '@solidjs/router';
 import { createSignal } from "solid-js";
+import toast from "solid-toast";
 
 const [poll, setPoll] = createSignal('');
 const [pollId, setPollId] = createSignal('');
@@ -13,12 +14,13 @@ function SearchPoll() {
 
     const handleChange = (e: any) => {
         setPollId(e.target.value);
-        console.log("hello you", pollId());
     }
 
     const handleSubmit = (e: Event) => {
         const input = document.getElementById('fname') as HTMLInputElement | null;
-        const value = input?.value;
+        let value = input?.value;
+        if(!value){value = "_"}
+        console.log(value)
 
         // const data = submit(form);
         e.preventDefault();
@@ -32,16 +34,15 @@ function SearchPoll() {
         })
         .then(response => {
             if (response.status === 200) {
-                console.log(response);
                 navigate('/');
                 return response.json();
             } else {
-                alert('Error, wrong input');
+                toast.error("Poll not found", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
             }
         })
         .then(data => {
             if (data["isClosed"]) {
-                alert("The poll is closed");
+                toast.error("Poll is closed", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
             }
             else {
                 if (data["isPrivate"] && localStorage.getItem("loggedIn")) {
@@ -49,10 +50,11 @@ function SearchPoll() {
                     navigate('/polls/:id');
                 }
                 else if (data["isPrivate"] && !(localStorage.getItem("loggedIn"))) {
-                    alert("The poll is private and you will need to login");
+                    toast.error("Private poll, please log in to vote", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
                     navigate('/login');
                 }
                 else {
+                    console.log(data)
                     setPoll(data);
                     navigate('/polls/:id');
                 }
@@ -64,8 +66,9 @@ function SearchPoll() {
         <div class="trial">
             <div class="poll-search">
                 <form class="poll-search-form" action="" onSubmit={handleSubmit}>
+                    <img class="logo" src="https://media.discordapp.net/attachments/579830395412152334/1045834936323674162/feedapp.png?width=1080&height=1080"></img>
                     <input class="poll-search-input" type="text" id="fname" name="firstname" onChange={handleChange} placeholder="&#128269; Enter Poll ID"></input>
-                    <input class="submit-poll-btn" type="submit" value="Enter"></input>
+                    <input class="submit-btn" type="submit" value="Enter"></input>
                 </form>
             </div>
         </div>

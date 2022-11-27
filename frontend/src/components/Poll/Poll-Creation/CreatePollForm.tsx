@@ -44,7 +44,7 @@ const createForm = () => {
     }
   };
 
-  return { form, submit, updateFormField, clearField };
+  return { form, submit, updateFormField, clearField, setForm};
 };
 
 export { createForm };
