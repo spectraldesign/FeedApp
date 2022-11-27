@@ -1,8 +1,8 @@
 import { createSignal, createEffect, createMemo } from "solid-js";
 import "./profile.css";
 import { useNavigate, NavLink } from '@solidjs/router';
-import MyPollButton from "./buttons/myPollButton";
 import CreatePollButton from "./buttons/createPollButton";
+import MyPollButton from "./buttons/myPollButton";
 
 interface Tester {
     fullNameTest: string;
