@@ -3,9 +3,11 @@ import "../../button.css"
 
 function MyPollButton() {
     return (
-        <div class="button mypolls">
-            <NavLink href="/profile/polls">My polls</NavLink>
-        </div>
+        <>
+            <div class="button mypolls">
+                <NavLink href="/profile/polls">My polls</NavLink>
+            </div>
+        </>
     );
   }
 

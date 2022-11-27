@@ -14,7 +14,6 @@ function Header() {
             )
         }
         else {
-            console.log('huh')
             return (
                 <div class="header-bar">
                 <HomeButton />
