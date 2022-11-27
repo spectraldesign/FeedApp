@@ -1,3 +1,5 @@
+import "../../button.css"
+
 function MyPollButton() {
     return (
         <div class="button mypolls">
