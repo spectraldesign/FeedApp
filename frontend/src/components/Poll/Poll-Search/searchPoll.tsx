@@ -1,6 +1,6 @@
 import "./SearchPoll.css";
 import { loginForm } from '../../Login/LoginForm';
-import { useNavigate, NavLink } from '@solidjs/router';
+import { useNavigate, NavLink, useParams } from '@solidjs/router';
 import { createSignal } from "solid-js";
 import toast from "solid-toast";
 
@@ -8,12 +8,18 @@ const [poll, setPoll] = createSignal('');
 const [pollId, setPollId] = createSignal('');
 
 function SearchPoll() {
+    const { titleParam  } = useParams();
+
+    const refreshPage = () => {
+        window.location.reload();
+    }
 
     const { form, updateFormField, submit, clearField } = loginForm();
     const navigate = useNavigate();
 
     const handleChange = (e: any) => {
         setPollId(e.target.value);
+        localStorage.setItem("pollId", e.target.value);
     }
 
     const handleSubmit = (e: Event) => {
@@ -47,7 +53,7 @@ function SearchPoll() {
             else {
                 if (data["isPrivate"] && localStorage.getItem("loggedIn")) {
                     setPoll(data);
-                    navigate('/polls/:id');
+                    navigate(`/polls/${pollId()}`);
                 }
                 else if (data["isPrivate"] && !(localStorage.getItem("loggedIn"))) {
                     toast.error("Private poll, please log in to vote", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
@@ -56,7 +62,7 @@ function SearchPoll() {
                 else {
                     console.log(data)
                     setPoll(data);
-                    navigate('/polls/:id');
+                    navigate(`/polls/${pollId()}`);
                 }
             }
         })

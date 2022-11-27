@@ -10,6 +10,9 @@ import toast from "solid-toast";
 // const [resultPollId, setResultPollId] = createSignal('');
 const [resultPoll, setResultPoll] = createSignal('');
 
+function getPoll() {
+    return localStorage.getItem("pollId");
+}
 
 function AnswerPoll() {
     const { form, updateFormField, submit, clearField } = answerForm();
@@ -19,8 +22,14 @@ function AnswerPoll() {
     var authentic = token?.substring(1, token.length-1);
 
     const handleSubmit = (e: Event) => {
-        const data = submit(form);
         e.preventDefault();
+        if (form.isPositive === undefined) {
+            toast.error("Please select an option", {position:"bottom-center", style: {'background-color': '#f2cbcb',}})
+        }
+        else {
+        const data = submit(form);
+        console.log("data, ", data);
+    
         fetch(`${import.meta.env.VITE_BASE_URL}vote/${pollId()}`, {
                 method: 'POST',
                 mode: 'cors',
@@ -32,10 +41,12 @@ function AnswerPoll() {
                 body: JSON.stringify(data)
             })
             .then(response => {
+                console.log("response status: " + response.status);
+                console.log()
                 if (response.status === 201) {
                     setResultPollId(pollId());
                     setResultPoll(poll());
-                    navigate('/poll/results')
+                    navigate(`/poll/${pollId()}/results`)
                     return response.text();
                 } 
                 else if (response.status === 403){
@@ -46,6 +57,7 @@ function AnswerPoll() {
                 }
             }
         )
+        }
         
     }
 

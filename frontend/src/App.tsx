@@ -1,4 +1,4 @@
-import type { Component } from 'solid-js';
+import { Component} from 'solid-js';
 import Homepage from './Pages/Homepage';
 import { Routes, Route } from '@solidjs/router';
 import MyPollsPage from './Pages/MyPollsPage';
@@ -21,7 +21,7 @@ const App: Component = () => {
         <Route path="/polls/:id" element={<VotePage />} />
         <Route path="/profile/polls" element={<MyPollsPage />} />
         <Route path="/poll/create" element={<CreatePollPage />} />
-        <Route path="/poll/results" element={<ResultPage />} />
+        <Route path="/poll/:id/results" element={<ResultPage />} />
       </Routes>
     </>
   );

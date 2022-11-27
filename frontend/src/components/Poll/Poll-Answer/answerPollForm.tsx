@@ -10,13 +10,11 @@ const submit = (form: FormFields) => {
   };
 
   return dataToSubmit;
-  // should be submitting your form to some backend service
-  console.log(`submitting ${JSON.stringify(dataToSubmit)}`);
 };
 
 const answerForm = () => {
   const [form, setForm] = createStore<FormFields>({
-    isPositive: true
+    isPositive: undefined
   });
 
   const clearField = (fieldName: string) => {
