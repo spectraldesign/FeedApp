@@ -138,6 +138,13 @@ namespace API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Remove a poll that has been served to an IoTDevice
+        /// </summary>
+        /// <param name="IoTId">IoT device Guid to remove poll from</param>
+        /// <param name="pollId">Poll id to remove</param>
+        /// <response code="200">Poll served to IoT device</response>
+        /// <response code="400">Bad Request</response>
         [HttpPost("servedPolls/{IoTId}/{pollId}")]
         public async Task<ActionResult<int>> removeServedPollByPollId(Guid IoTId, string pollId)
         {
