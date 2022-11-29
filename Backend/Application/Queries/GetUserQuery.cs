@@ -22,7 +22,7 @@ namespace Application.Queries
 
         public async Task<UserDTO> Handle(GetUserQuery request, CancellationToken token)
         {
-            User user = await _userRepository.GetCurrentUser();
+            User user = await _userRepository.GetUserById(request.id);
             if (user == null) { return null; }
             return user.ToUserDTO();
         }

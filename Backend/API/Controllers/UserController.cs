@@ -112,6 +112,13 @@ namespace API.Controllers
             return !result.Succeeded ? new BadRequestObjectResult(result) : StatusCode(201);
         }
 
+        /// <summary>
+        /// Get the currently logged in user
+        /// </summary>
+        /// <returns>Statuscode 200</returns>
+        /// <response code="200">Json object with {Firstname, Lastname, Email, UserName}</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
         [HttpGet("self")]
         public async Task<ActionResult<LoggedInUserDTO>> GetCurrentUser()
         {
