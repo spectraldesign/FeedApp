@@ -1,6 +1,5 @@
 # FeedApp
-
-![example workflow](https://github.com/P1T1B0Y98/FeedApp/actions/workflows/dotnet.yml/badge.svg)                                                         ![example workflow](https://github.com/P1T1B0Y98/FeedApp/actions/workflows/node.js.yml/badge.svg) 
+[![Build and deploy backend to Azure Web App](https://github.com/spectraldesign/FeedApp/actions/workflows/azure-deploy.yml/badge.svg)](https://github.com/spectraldesign/FeedApp/actions/workflows/azure-deploy.yml) [![Deploy frontend to Azure](https://github.com/spectraldesign/FeedApp/actions/workflows/deploy-frontend.yml/badge.svg)](https://github.com/spectraldesign/FeedApp/actions/workflows/deploy-frontend.yml)
 
 DAT250 project in which we were to create an API, a frontend, and integration with messaging services and IoT-devices for an application which allows a user to create polls (with yes/no votes), vote on polls and manage polls.
 
