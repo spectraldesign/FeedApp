@@ -3,23 +3,27 @@ import { errorMessage, successMessage } from '@/common/hooks'
 import { Poll } from '@/common/interfaces/poll'
 import { Badge, Button, Card, Center, Flex, Group, Text } from '@mantine/core'
 import { notifications } from '@mantine/notifications'
+import { useRouter } from 'next/router'
 
 interface PollComponentProps {
   poll: Poll
 }
 
-const registerVote = async (pollId: string, isPositive: boolean) => {
-  const res = await voteOnPoll(pollId, isPositive);
-  console.log(res)
-  if(res == 201){
-    notifications.show(successMessage('Vote registered!'))
-  }
-  else{
-    notifications.show(errorMessage('Voting failed!'))
-  }
-}
 
 const PollComponent = ({ poll }: PollComponentProps) => {
+  const router = useRouter()
+  const registerVote = async (poll: Poll, isPositive: boolean) => {
+    if (poll.isClosed) {
+      return notifications.show(errorMessage('Cannot vote on closed poll!'))
+    }
+    const res = await voteOnPoll(poll.id, isPositive)
+    if (res == 201) {
+      notifications.show(successMessage('Vote registered!'))
+      router.push(`/poll/result/${poll.id}`);
+    } else {
+      notifications.show(errorMessage('Voting failed!'))
+    }
+  }
   return (
     <Center>
       <Card miw={'150px'} w={'500px'} shadow='sm' padding='lg' radius='md' withBorder>
@@ -43,15 +47,16 @@ const PollComponent = ({ poll }: PollComponentProps) => {
           {`Poll by: ${poll.creatorName}`}
         </Text>
 
-        <Button variant='light' color='green' fullWidth mt='md' radius='md' onClick={() => registerVote(poll.id, true)}>
+        <Button variant='light' color='green' fullWidth mt='md' radius='md' onClick={() => registerVote(poll, true)}>
           YES
         </Button>
-        <Button variant='light' color='red' fullWidth mt='md' radius='md' onClick={() => registerVote(poll.id, false)}>
+        <Button variant='light' color='red' fullWidth mt='md' radius='md' onClick={() => registerVote(poll, false)}>
           NO
         </Button>
       </Card>
     </Center>
   )
+  
 }
 
 export default PollComponent

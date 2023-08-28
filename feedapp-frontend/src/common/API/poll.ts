@@ -10,5 +10,5 @@ export const getPollById = async (pollId: string) => {
 }
 
 export const voteOnPoll = async (pollId: string, isPositive:boolean) => {
-  return (await api.post(`/api/vote/${pollId}`, {"isPositive": isPositive})).status
+  return (await api.post(`/api/vote/${pollId}`, {"isPositive": isPositive}).catch(err=>{}))?.status
 }
