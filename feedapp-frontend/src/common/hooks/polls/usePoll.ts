@@ -14,7 +14,7 @@ export const usePoll = (pollId: string) => {
       notifications.show(errorMessage(err.cause?.message))
     },
     onSuccess: () => {
-      notifications.show(successMessage())
+      notifications.show(successMessage("Poll data retrieved"))
     },
   })
 }

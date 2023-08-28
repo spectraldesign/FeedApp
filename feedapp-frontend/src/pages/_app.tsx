@@ -1,5 +1,6 @@
 import PageContainer from '@/common/layout/pageContainer'
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core'
+import { Notifications } from '@mantine/notifications';
 import { useLocalStorage } from '@mantine/hooks'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
@@ -37,6 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
               },
             }}
           >
+            <Notifications />
             <PageContainer>
               <Component {...pageProps} />
             </PageContainer>

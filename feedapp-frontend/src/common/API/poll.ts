@@ -8,3 +8,7 @@ export const getAllPolls = async () => {
 export const getPollById = async (pollId: string) => {
   return (await api.get<Poll>(`/api/poll/${pollId}`)).data
 }
+
+export const voteOnPoll = async (pollId: string, isPositive:boolean) => {
+  return (await api.post(`/api/vote/${pollId}`, {"isPositive": isPositive})).status
+}

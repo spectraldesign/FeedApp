@@ -19,8 +19,8 @@ export const successMessage = (operation?: string) => {
     id: 'apiSuccess',
     withCloseButton: true,
     autoClose: 5000,
-    title: 'API request successful :)',
-    message: `${operation} was successful` || '',
+    title: 'API request successful',
+    message: `${operation}` || '',
     color: 'green',
   }
 }
