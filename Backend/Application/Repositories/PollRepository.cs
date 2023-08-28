@@ -1,6 +1,5 @@
 ﻿using Application.DTO.PollDTOs;
 using Application.Extentions;
-using Application.Messaging;
 using Domain.Entities;
 using Domain.Interfaces;
 using IdGen;
@@ -27,18 +26,14 @@ namespace Application.Repositories
         private readonly IFeedAppDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly IdGenerator _idGenerator;
-        protected RabbitMQClient _rabbitMQClient;
 
-        //protected RabbitMQClient _rabbitMQClient = new RabbitMQClient();
-
-        public PollRepository(IGenericExtension genericExtension, IFeedAppDbContext context, IConfiguration configuration, IdGenerator idGenerator, RabbitMQClient rabbitMQClient)
+        public PollRepository(IGenericExtension genericExtension, IFeedAppDbContext context, IConfiguration configuration, IdGenerator idGenerator)
 
         {
             _genericExtension = genericExtension;
             _context = context;
             _configuration = configuration;
             _idGenerator = idGenerator;
-            _rabbitMQClient = rabbitMQClient;
         }
 
         public async Task<GetPollDTO> GetPollById(string id)
@@ -100,7 +95,6 @@ namespace Application.Repositories
             var saved = await _context.SaveChangesAsync();
             Console.WriteLine("saved" + saved);
             Console.WriteLine("poll" + poll.Question);
-            _rabbitMQClient.PublishNewPoll(poll);
             return saved;
         }
 
@@ -165,8 +159,6 @@ namespace Application.Repositories
             pollResult.PositiveVotes = dbPoll.Votes.Where(x => x.Positive == true).Count();
             pollResult.NegativeVotes = dbPoll.Votes.Where(x => x.Positive == false).Count();
             pollResult.TotalVotes = dbPoll.Votes.Count;
-
-            _rabbitMQClient.PublishClosedPoll(pollResult);
             return res;
         }
 
@@ -198,7 +190,6 @@ namespace Application.Repositories
                     PositiveVotes = poll.Votes.Where(v => v.Positive == true).Count(),
                     NegativeVotes = poll.Votes.Where(v => v.Positive == false).Count()
                 };
-                _rabbitMQClient.PublishClosedPoll(result);
             }
 
             return await _context.SaveChangesAsync();
